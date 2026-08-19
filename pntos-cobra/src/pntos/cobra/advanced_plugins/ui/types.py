@@ -48,7 +48,7 @@ def _validate_registry_value(value: Any) -> Any:  # noqa: ANN401
     Validate and deserialize input for RegistryValueTypeUnion.
     """
     if isinstance(value, list):
-        if value and all(isinstance(item, str) for item in value):
+        if all(isinstance(item, str) for item in value):
             return value
         if list_of_nums := _validate_list_of_numbers(value):
             return np.array(list_of_nums, dtype=np.float64)
