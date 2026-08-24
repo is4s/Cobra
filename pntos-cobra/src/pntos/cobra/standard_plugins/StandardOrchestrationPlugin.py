@@ -838,13 +838,13 @@ class StandardOrchestrationPlugin(OrchestrationPlugin):
 
             # Don't use old, out-of-date messages
             if not has_valid_time(
-                self.init_solution, self.fusion_engine, message, self._log
+                self.init_solution, self.fusion_engine, msg, self._log
             ):
                 continue
 
             # If aligned, send messages to IMU or filter
             if channel in self.inertial_channels:
-                self.inertial.process_pntos_message(message)
+                self.inertial.process_pntos_message(msg)
             elif target_mps := self.measurement_channels.get(channel):
                 time = msg.wrapped_message.time_of_validity  # ty:ignore[unresolved-attribute]
                 self._propagate_to_time(time)
