@@ -1,10 +1,12 @@
 import time
+from pathlib import Path
 
 import numpy as np
 import pytest
 from aspn23_lcm import measurement_position_velocity_attitude
 from pntos.api import LoggingLevel
-from pntos.cobra import LcmTransportPlugin
+from pntos.cobra import LcmLogTransportPlugin, LcmTransportPlugin
+from pntos.cobra.config import LcmLogTransportConfig, config_to_registry
 from pntos.cobra.internal import DummyMediator, StandardMediator, StandardRegistry
 
 
@@ -22,6 +24,11 @@ def mediator() -> DummyMediator:
 @pytest.fixture
 def transport_plugin() -> LcmTransportPlugin:
     return LcmTransportPlugin('python-transport-lcm23-plugin')
+
+
+@pytest.fixture
+def lcm_log_transport_plugin() -> LcmLogTransportPlugin:
+    return LcmLogTransportPlugin('python-transport-lcm23-log-plugin')
 
 
 def test_initialize_plugin(
@@ -89,3 +96,19 @@ def _test_handler(
     assert received_response.num_error_model_params == 0
 
     transport_plugin.shutdown_plugin()
+
+
+def test_initialize_lcm_log_transport_plugin_no_start_listening(
+    lcm_log_transport_plugin: LcmLogTransportPlugin,
+    mediator: StandardMediator,
+    tmp_path: Path,
+) -> None:
+    """
+    This tests a use-case such as Buscat where this transport is selected as an
+    _output_ transport and thus never gets a `start_listening()` call.
+    """
+    temp_log_file = tmp_path / 'test.log'
+    config = LcmLogTransportConfig(output_file=str(temp_log_file))
+    config_to_registry(config, mediator)
+    lcm_log_transport_plugin.init_plugin('plugin_path', mediator)
+    lcm_log_transport_plugin.shutdown_plugin()

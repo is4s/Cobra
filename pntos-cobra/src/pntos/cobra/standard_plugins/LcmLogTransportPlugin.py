@@ -42,6 +42,7 @@ class LcmLogTransportPlugin(TransportPlugin):
         self._config_group = config_group
         self.handler = None
         self._channels_found = set()
+        self._log_reader_thread = None
 
     @override
     def init_plugin(
