@@ -9,9 +9,8 @@ the most-tested platform, but other unix-based platforms are supported as well.
 :::{admonition} Limitation
 :class: caution
 
-Cobra is not natively supported on Windows. It is still possible to run Cobra on windows using
-[Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install) (WSL) or a virtual
-machine, although both are limited to experimental support in Cobra.
+Cobra has experimental support on Windows. If you choose to attempt to use Cobra on Windows
+natively, it is recommended you do so in a PowerShell shell.
 :::
 
 ## Environment Setup
