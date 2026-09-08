@@ -163,7 +163,35 @@ navtk==2.1.0.post8.dev0
     #   navanalysis-lcm
     #   pntos-cobra
     #   pntos-extras
-numpy==1.26.4
+numpy==1.26.4 ; sys_platform != 'win32'
+    # via
+    #   aspn23
+    #   aspn23-xtensor
+    #   contourpy
+    #   h5py
+    #   inu
+    #   matplotlib
+    #   navanalysis-lcm
+    #   navtk
+    #   pntos-api
+    #   pntos-cobra
+    #   pntos-extras
+    #   scipy
+numpy==2.2.6 ; python_full_version < '3.11' and sys_platform == 'win32'
+    # via
+    #   aspn23
+    #   aspn23-xtensor
+    #   contourpy
+    #   h5py
+    #   inu
+    #   matplotlib
+    #   navanalysis-lcm
+    #   navtk
+    #   pntos-api
+    #   pntos-cobra
+    #   pntos-extras
+    #   scipy
+numpy==2.4.6 ; python_full_version >= '3.11' and sys_platform == 'win32'
     # via
     #   aspn23
     #   aspn23-xtensor
