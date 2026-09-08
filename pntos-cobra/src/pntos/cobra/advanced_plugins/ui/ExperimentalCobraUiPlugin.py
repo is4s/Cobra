@@ -6,7 +6,6 @@ for real-time registry updates and subscriptions.
 """
 
 import shutil
-from importlib.resources import as_file, files
 from logging import ERROR, getLogger
 from pathlib import Path
 from threading import Event, Thread
@@ -19,6 +18,7 @@ from flask_socketio import SocketIO, emit
 from pntos.api import LoggingLevel, Mediator, UiPlugin
 from pntos.cobra.config import ExperimentalCobraUiConfig, config_from_registry
 from pntos.cobra.utils import UiMetadataInterface
+from pntos_cobra_frontend import get_dist_path
 from typing_extensions import Unpack, override
 from werkzeug.exceptions import NotFound
 from werkzeug.utils import secure_filename
@@ -84,16 +84,13 @@ class ExperimentalCobraUiPlugin(UiPlugin):
         if config.static_folder:
             self.static_folder = Path(config.static_folder)
         else:
-            with as_file(
-                files('pntos.cobra')
-                .joinpath('advanced_plugins')
-                .joinpath('ui')
-                .joinpath('_static')
-                .joinpath(
-                    'dist',
+            static_folder = get_dist_path()
+            if static_folder is None:
+                self.mediator.log_message(
+                    LoggingLevel.WARN, 'Could not find assets - Cobra UI disabled'
                 )
-            ) as path:
-                self.static_folder = path
+                return
+            self.static_folder = static_folder
 
         werkz_logger = getLogger('werkzeug')
         werkz_logger.setLevel(ERROR)

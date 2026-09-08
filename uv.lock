@@ -1439,6 +1439,7 @@ dependencies = [
     { name = "navtk" },
     { name = "numpy" },
     { name = "pntos-api" },
+    { name = "pntos-cobra-frontend" },
     { name = "pydantic" },
     { name = "scipy", version = "1.15.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "scipy", version = "1.16.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
@@ -1461,6 +1462,7 @@ requires-dist = [
     { name = "navtk", specifier = "==2.1.post7.dev0" },
     { name = "numpy" },
     { name = "pntos-api", editable = "pntos-api" },
+    { name = "pntos-cobra-frontend", specifier = ">=0.1,<0.2" },
     { name = "pydantic", specifier = ">=2.0.0" },
     { name = "scipy", specifier = ">=1.15.2" },
     { name = "textual" },
@@ -1491,6 +1493,14 @@ version = "1.0.0"
 source = { registry = "https://pypi.org/simple" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/6b/16/020f216bc95f214c8bd95df83e2700de1ea0adf7e7dd574c53f8b09f7a8f/pntos_cobra_docs_data-1.0.0-py2.py3-none-any.whl", hash = "sha256:2ff6429ac5b052e81955fde4aea3336123a4f035ccfaafc82c803246b41748e8", size = 5466381, upload-time = "2026-07-21T13:45:57.967Z" },
+]
+
+[[package]]
+name = "pntos-cobra-frontend"
+version = "0.1.0"
+source = { registry = "https://pypi.org/simple" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/89/e0/95d21277cdc32ae3e97621a1bc5b3ed6edbbe53164ea5afe1e60bbe89358/pntos_cobra_frontend-0.1.0-py3-none-any.whl", hash = "sha256:78ff417f3825a4d626deac3852e7841bb98159c88b3b6a8e55a30fc823310b05", size = 1483173, upload-time = "2026-08-10T17:11:23.585Z" },
 ]
 
 [[package]]

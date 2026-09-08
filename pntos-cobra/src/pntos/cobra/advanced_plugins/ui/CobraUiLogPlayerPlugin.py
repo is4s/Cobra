@@ -5,6 +5,7 @@ from threading import Event, Lock, Thread
 from lcm import LCM, EventLog
 from pntos.api import KeyValueStore, LoggingLevel, Mediator, UtilityPlugin
 from pntos.cobra.utils import MutableValueView
+from pntos_cobra_frontend import get_dist_path
 from typing_extensions import override
 
 DISPLAY_UPDATE_INTERVAL_MS = 100
@@ -18,7 +19,7 @@ class CobraUiLogPlayerPlugin(UtilityPlugin):
     _file: Path | None
     _file_found: Event
     _log_thread: Thread | None
-    _upload_dir: Path
+    _upload_dir: Path | None
     _play: Event
     _step: Event
 
@@ -26,7 +27,7 @@ class CobraUiLogPlayerPlugin(UtilityPlugin):
         self,
         identifier: str,
         lcm_url: str = 'tcpq://localhost:7700',
-        upload_dir: str = '_static/dist/',
+        upload_dir: str | None = None,
         group: str = 'ui/logplayer',
     ) -> None:
         self.identifier = identifier
@@ -39,7 +40,7 @@ class CobraUiLogPlayerPlugin(UtilityPlugin):
         self._last_system_time: float = 0.0
         self._channels_seen: set[str] = set()
         self._log_thread = None
-        self._passed_upload_dir = upload_dir
+        self._upload_dir = Path(upload_dir) if upload_dir else get_dist_path()
 
     @override
     def init_plugin(
@@ -49,13 +50,18 @@ class CobraUiLogPlayerPlugin(UtilityPlugin):
     ) -> None:
         assert mediator is not None
         self._mediator = mediator
+        if self._upload_dir is None:
+            self._mediator.log_message(
+                LoggingLevel.WARN,
+                'Could not find uploads folder - CobraUiLogPlayerPlugin is disabled.',
+            )
+            return
         self._shutdown_thread_event = Event()
         self._seek_lock: Lock = Lock()
         self._play = Event()
         self._step = Event()
         self._seek_event = Event()
         self._file_found = Event()
-        self._upload_dir = Path(__file__).parent.resolve() / self._passed_upload_dir
         self._lcm = LCM(self._lcm_url)
         self._initialize_keys()
         self._request_notify_new_file()
@@ -236,6 +242,7 @@ class CobraUiLogPlayerPlugin(UtilityPlugin):
         if file == FILE_KEY_DEFAULT_VALUE:
             return
         self._shutdown_current_thread()
+        assert self._upload_dir is not None
         path = self._upload_dir / file
         if not path.exists():
             self._mediator.log_message(

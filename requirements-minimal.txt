@@ -128,6 +128,8 @@ pillow==11.3.0
     # via matplotlib
 platformdirs==4.11.2
     # via textual
+pntos-cobra-frontend==0.1.0
+    # via pntos-cobra
 pntos-python-datasets-lcm==0.1.0
     # via
     #   pntos-cobra-apps

@@ -4,21 +4,6 @@ This app demonstrates the in-progress
 {py:obj}`ExperimentalCobraUiPlugin<pntos.cobra.ExperimentalCobraUiPlugin>` which
 provides an experimental web GUI for the Cobra ecosystem.
 
-## Installation-Specific Build Instructions
-
-If installing Cobra via a wheel, skip to [](#run-the-app). Otherwise, this app requires building 
-the front-end components locally. Running this app requires `nodejs` version `>=v24.16.0` to be 
-installed. For installation instructions, see [Node's installation 
-docs](https://nodejs.org/en/download). Once nodejs is installed, complete all [pntOS-Python 
-installation](../../installation.md) instructions to set up the python environment. If
-installing via git url, the build system should automatically build the front-end
-components so skip to [](#run-the-app). Otherwise, if working from the
-pntOS-Python repo, build the UI components via:
-
-```sh
-util/build_ui.sh
-```
-
 ## Run the App
 
 Run this command to set up the LCM relay:
@@ -86,6 +71,3 @@ under development. This has the following implications:
 2. The current implementation is very new. Any feedback or bug reports are welcome.
 3. The UI architecture and websocket API is unstable and liable to change at any time.
    Build against it at your own risk.
-4. As outlined in [](#installation-specific-build-instructions), there is a hard
-   dependency on nodejs if trying to use the Cobra UI plugin not from a pre-built wheel.
-   This dependency should be removed in a future release.

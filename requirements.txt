@@ -193,6 +193,8 @@ pluggy==1.6.0
     #   pytest
     #   pytest-cov
 pntos-cobra-docs-data==1.0.0
+pntos-cobra-frontend==0.1.0
+    # via pntos-cobra
 pntos-python-datasets-lcm==0.1.0
     # via
     #   pntos-cobra-apps

@@ -1,6 +1,6 @@
 [build-system]
 build-backend = "setuptools.build_meta"
-requires = [ "pntos-python-docs-data", "setuptools>=68" ]
+requires = [ "setuptools>=68" ]
 
 [project]
 name = "pntos-cobra"
@@ -32,6 +32,7 @@ dependencies = [
     "navtk==2.1.post7.dev0",
     "numpy",
     "pntos-api>=2.0.0,<3.0.0",
+    "pntos-cobra-frontend>=0.1,<0.2",
     "pydantic>=2.0.0",
     "scipy>=1.15.2",
     "textual",

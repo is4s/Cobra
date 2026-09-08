@@ -280,7 +280,6 @@ jobs:
         - name: Run app
           run: |
             set -xe
-            docker exec pntos-python ./util/build_ui.sh
             docker exec pntos-python pytest pntos-cobra-apps -k test_ui_app -s
 
     pip-workflow:
