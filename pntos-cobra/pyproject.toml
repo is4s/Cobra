@@ -29,7 +29,7 @@ dependencies = [
     "matplotlib",
     "navanalysis-lcm==0.1.5",
     "navanalysis-ros==0.1.2",
-    "navtk==2.1.post7.dev0",
+    "navtk==2.1.post8.dev0",
     "numpy",
     "pntos-api>=2.0.0,<3.0.0",
     "pntos-cobra-frontend>=0.1,<0.2",

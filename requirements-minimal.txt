@@ -27,6 +27,8 @@ aspn23-lcm==0.1.0
     # via
     #   navanalysis-lcm
     #   pntos-cobra
+aspn23-xtensor==1.0.1
+    # via navtk
 bidict==0.23.1
     # via python-socketio
 blinker==1.9.0
@@ -104,7 +106,7 @@ navanalysis-ros==0.1.2
     # via
     #   cobra
     #   pntos-cobra
-navtk==2.1.0.post7.dev0
+navtk==2.1.0.post8.dev0
     # via
     #   navanalysis-lcm
     #   pntos-cobra
@@ -112,6 +114,7 @@ navtk==2.1.0.post7.dev0
 numpy==1.26.4
     # via
     #   aspn23
+    #   aspn23-xtensor
     #   contourpy
     #   h5py
     #   inu
