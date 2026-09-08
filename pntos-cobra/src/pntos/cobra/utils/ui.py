@@ -235,6 +235,10 @@ class ChannelView:
             self._times = []
 
         # Calculations
+
+        # Avoid division by zero later
+        if t_now == t_last:
+            return
         dt = t_now - t_last
         # Bandwidth: assume all messages are the same pickled size
         size = len(pickle.dumps(last_message))
