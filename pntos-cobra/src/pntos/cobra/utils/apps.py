@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 from pathlib import Path
 from signal import SIGINT
@@ -66,7 +67,7 @@ def run_app(
     monitor: bool = False,
     validate: LoggingLevel | None = None,
 ) -> Popen[str]:
-    cmd = ['python3', '-u', app.as_posix()]
+    cmd = [sys.executable, '-u', app.as_posix()]
     if args is not None:
         cmd.extend(args)
 
