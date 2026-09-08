@@ -278,7 +278,12 @@ scipy==1.15.3 ; python_full_version < '3.11'
     #   inu
     #   navanalysis-lcm
     #   pntos-cobra
-scipy==1.16.1 ; python_full_version >= '3.11'
+scipy==1.17.1 ; (python_full_version >= '3.11' and sys_platform != 'win32') or (python_full_version == '3.11.*' and sys_platform == 'win32')
+    # via
+    #   inu
+    #   navanalysis-lcm
+    #   pntos-cobra
+scipy==1.18.1 ; python_full_version >= '3.12' and sys_platform == 'win32'
     # via
     #   inu
     #   navanalysis-lcm
