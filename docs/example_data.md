@@ -24,7 +24,7 @@ the data, and a variable in the Python module which provides the path on the dis
 ```
 
 :::{tip}
-The above datasets are provided for convenience, but pntOS-Python is in no way limited to the above
+The above datasets are provided for convenience, but Cobra is in no way limited to the above
 types! An app could use any version of ASPN and any type of transport, so long as there is a
 compatible transport plugin to handle the conversion.
 :::

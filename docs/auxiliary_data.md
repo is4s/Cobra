@@ -1,7 +1,7 @@
 # Auxiliary Data
 
 Auxiliary data (usually just called "aux data", for brevity) is an escape hatch to provide a
-pntOS-Python component with some sort of extra information not otherwise provided by the API. The components which can be provided with aux data are:
+Cobra component with some sort of extra information not otherwise provided by the API. The components which can be provided with aux data are:
 
 - Measurement processors
 - State blocks

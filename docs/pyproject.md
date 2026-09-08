@@ -2,8 +2,7 @@
 
 This is a brief overview of the [Python packaging
 specification](https://packaging.python.org/en/latest/specifications/pyproject-toml/#pyproject-toml-spec),
-in addition to some narrowed conventions for Python development in the `pntOS-Python`
-repository.
+in addition to some narrowed conventions for Python development in the `Cobra` repository.
 
 ## Project Configuration (`pyproject.toml`)
 

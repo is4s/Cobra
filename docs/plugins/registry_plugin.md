@@ -14,7 +14,7 @@ The registry plugin serves three primary purposes:
 2. Storing runtime information.
 3. Enabling inter-plugin communication when the API doesn't provide a specific mechanism.
 
-We'll explore the mechanisms the Python pntOS API provides to accomplish these goals in
+We'll explore the mechanisms the {term}`Cobra` API provides to accomplish these goals in
 this section, and then explore how {term}`Cobra` implements the registry in
 the following section, [](#cobra-implementation-standardregistryplugin).
 
@@ -55,7 +55,7 @@ could call `group_key_value_store[group][key]`. For example,
 and keys must be unique within each group (but not across groups). Value types can vary
 within groups (see [](#supported-registry-types)).
 
-In the context of the Python pntOS API, "registry" refers to a shared database structure
+In the context of the {term}`Cobra` API, "registry" refers to a shared database structure
 as described above, implemented via the following objects. The {py:obj}`Registry
 Plugin<pntos.api.RegistryPlugin>` provides a {py:obj}`Registry<pntos.api.Registry>`
 object, and the {py:obj}`Registry<pntos.api.Registry>` object provides a
@@ -548,7 +548,7 @@ Cobra's Registry Plugin implementation is the
 {py:obj}`StandardKeyValueStore<pntos.cobra.internal.StandardKeyValueStore>`. These
 implementations can be found in
 [pntos-cobra/src/pntos/cobra/standard_plugins/StandardRegistryPlugin.py](https://github.com/is4s/pntOS-Python/blob/main/pntos-cobra/src/pntos/cobra/standard_plugins/StandardRegistryPlugin.py)
-in the {term}`pntOS-Python` repository.
+in the {term}`Cobra` repository.
 
 ### Loading Config
 

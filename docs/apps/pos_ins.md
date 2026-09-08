@@ -1,7 +1,7 @@
 # POS INS App
 
 :::{caution}
-This section is only relevant to users who are working within the pntOS-Python repository.
+This section is only relevant to users who are working within the Cobra repository.
 Downstream users will need to write their own apps to run. For help on building your own apps, see
 [The Exercises](../exercises.md)
 :::
@@ -20,23 +20,22 @@ fusion between two sensors. In this case it is the fusion between GPS position
 measurements and IMU readings using a simple set of {term}`Cobra` plugins. Each subsequent app
 will build on the previous app(s) with a small tweak or expanded capability to
 walk you through the process of building increasingly complex sensor-fusion and
-navigation systems with {term}`pntOS-Python` and {term}`Cobra`.
+navigation systems with {term}`Cobra`.
 
 ## App Walkthrough
 
 Let's walk through this first app piece by piece. You can find the first app file at
-[`pntos-python/pntos-cobra-apps/src/pntos/apps/tutorial/pos_ins.py`](https://github.com/is4s/pntOS-Python/blob/main/pntos-cobra-apps/src/pntos/apps/tutorial/pos_ins.py)
+[`pntos-cobra-apps/src/pntos/apps/tutorial/pos_ins.py`](https://github.com/is4s/pntOS-Python/blob/main/pntos-cobra-apps/src/pntos/apps/tutorial/pos_ins.py)
 to follow along. Let's get started by examining how you import elements from the `pntos` module.
 
 ### Imports
 
 Assuming we've [installed](../installation.md) the `pntos` Python module, we can import
-{term}`pntOS-Python` or {term}`Cobra` objects from a few different submodules within
-the `pntos` module:
+{term}`Cobra` objects from a few different submodules within the `pntos` module:
 
 | Submodule Location     | Available Imports                                                                                          |
 | ---------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `pntos.api`            | All {term}`pntOS-Python` objects                                                                           |
+| `pntos.api`            | All {term}`Cobra` API Definitions                                                                           |
 | `pntos.cobra`          | All {term}`Cobra` Plugins                                                                                  |
 | `pntos.cobra.internal` | Non-plugin {term}`Cobra` objects (e.g. {py:obj}`StandardMediator <pntos.cobra.internal.StandardMediator>`) |
 | `pntos.cobra.utils`    | {term}`Cobra` utility and helper functions                                                                 |

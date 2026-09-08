@@ -1,6 +1,6 @@
 # UI Plugin
 
-The {py:obj}`UI Plugin<pntos.api.UiPlugin>` implements a UI that is integrated directly into the {term}`pntOS-Python` implementation. While it is always possible to write a
+The {py:obj}`UI Plugin<pntos.api.UiPlugin>` implements a UI that is integrated directly into the {term}`Cobra` implementation. While it is always possible to write a
 graphical user interface (GUI) that listens to outputs and interacts with it externally,
 this plugin allows users to write a GUI that has direct access to the mediator. This
 allows for low latency and high performance GUI/UIs to be generated.  
@@ -30,5 +30,5 @@ However, in a case where multiple UI plugins are used, only one may require the 
 
 ## UI Plugin Implementations
 
-Currently, {term}`Cobra` offers the {py:obj}`UiLogPlottingPlugin<pntos.cobra.UiLogPlottingPlugin>`, which is a tutorial-level UI plugin that plots the {term}`pntOS-Python` {term}`PVA` solution vs. ground truth from a recorded {term}`LCM` or {term}`ROS` log file. This plugin generates plots upon shutdown, and is included in our tutorial apps
-to view the pntOS-Python solution after running the app.
+Currently, {term}`Cobra` offers the {py:obj}`UiLogPlottingPlugin<pntos.cobra.UiLogPlottingPlugin>`, which is a tutorial-level UI plugin that plots the {term}`Cobra` {term}`PVA` solution vs. ground truth from a recorded {term}`LCM` or {term}`ROS` log file. This plugin generates plots upon shutdown, and is included in our tutorial apps
+to view the {term}`Cobra` solution after running the app.

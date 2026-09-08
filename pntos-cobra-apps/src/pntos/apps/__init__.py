@@ -1,1 +1,1 @@
-"""pntOS Cobra Apps."""
+"""Cobra Apps."""

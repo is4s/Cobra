@@ -13,7 +13,7 @@ first.
 ## {py:obj}`ExternalInertial<pntos.api.ExternalInertial>`
 
 This type of inertial assumes an external system is mechanizing an IMU and providing INS solutions
-to the pntOS-Python implementation. It buffers the PVAs coming in the from INS, interpolating
+to the Cobra implementation. It buffers the PVAs coming in the from INS, interpolating
 between then and using them to calculate forces and rates.
 
 This inertial provides a couple methods to supply the user with metadata about the types of data it

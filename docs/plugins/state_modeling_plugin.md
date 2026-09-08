@@ -3,10 +3,10 @@ The {py:obj}`~pntos.api.StateModelingPlugin` is a factory plugin that provides c
 State modeling is a catch-all term for how we represent quantities to be estimated (states),
 sensor measurements, and how they all relate to one another.
 
-State modeling in pntos-python uses a multi-tiered factory structure that begins with the
+State modeling in {term}`Cobra` uses a multi-tiered factory structure that begins with the
 {py:obj}`~pntos.api.StateModelingPlugin`. The plugin is used to generate one or more *StateModelProviders*.
 Each StateModelProvider is a collection of state modeling components that can be used to populate a
-fusion engine. Currently, pntos-python has one API-defined StateModelProvider called
+fusion engine. Currently, Cobra has one API-defined StateModelProvider called
 the {py:obj}`~pntos.api.StandardStateModelProvider`. This class is also a factory, and as its name
 suggests, provides state modeling components for the pntOS *Standard Model*. This model includes:
 

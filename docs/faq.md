@@ -14,7 +14,7 @@ pntOS is a great solution for both operational and {term}`S&T` applications.
 
 ```
 
-```{dropdown} What is pntOS v. a pntOS implementation?
+```{dropdown} What is the difference between pntOS and a pntOS implementation?
 
 {term}`pntOS` is not a specific piece of code, collection of plugins, or program but is
 rather a plugin architecture. This means pntOS defines the components and message
@@ -47,13 +47,11 @@ to support fully embedded systems. Cobra was designed to meet this need.
 
 ```{dropdown} How is Cobra related to pntOS?
 
-{term}`Cobra` is a reference set of plugins which implement {term}`pntOS-Python` - a
-Python expression of the {term}`pntOS` architecture. While Cobra is written against
-{term}`pntOS-Python` it is distinct from pntOS-Python since pntOS-Python is only a
-reference architecture for building implementations. As a unique set of plugins, Cobra
-defines further conventional requirements in addition to the pntOS API requirements. An
-example of this would be the [Config Schema](./config.md) - the pntOS API leaves
-configuration up to the implementation, and so Cobra conventions defines how
+{term}`Cobra` is a pure Python version of the pntOS API, a set of reference plugins that
+implement this API, and various apps that use the above. As a separate entity from pntOS,
+Cobra defines further conventional requirements in addition to the pntOS API
+requirements. An example of this would be the [Config Schema](./config.md) - the pntOS
+API leaves configuration up to the implementation, and so Cobra conventions defines how
 Cobra-compatible plugins can expect to receive config.
 
 ```
@@ -83,28 +81,28 @@ docs](https://is4s.github.io/NavToolkit/tutorial/introduction.html).
 
 ```
 
-```{dropdown} What’s the difference between pntOS, Cobra, and NavToolkit?
+```{dropdown} What is the difference between pntOS, Cobra, and NavToolkit?
 
 {term}`pntOS` is the specification of a modular plugin architecture for building a
 {term}`PNT` sensor fusion solution that is able to ingest {term}`GPS` and other
 complementary navigation signals.
 
-{term}`Cobra` is the name of a set of reference plugins which implement the {term}`pntOS-Python`
-specification.
+{term}`Cobra` is the name of a Python implementation of the pntOS API, along with
+reference plugins and apps that use this API.
 
 {term}`NavToolkit` (navtk) is a software library that contains navigation algorithms
-used in the implementation of the Cobra plugins. Much of Cobra plugins will be built
-using NavToolkit but anyone is free to develop plugins using their own internal software
+used in the implementation of the Cobra plugins. The core Cobra plugins rely heavily on
+NavToolkit, but anyone is free to develop plugins using their own internal software
 libraries.
 
 ```
 
-```{dropdown} What is the difference between NavToolKit and pntOS-Python Filtering Components?
+```{dropdown} What is the difference between NavToolKit and Cobra Filtering Components?
 
 {term}`NavToolKit` (navtk) provides some off-the-shelf objects which function similarly
-to some {term}`pntOS-Python` components. These are outlined below:
+to some {term}`Cobra` components. These are outlined below:
 
-| Navtk Component      | Python PntOS Component       | Description                                                                                                       |
+| Navtk Component      | Cobra Component              | Description                                                                                                       |
 | -------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | StateBlock           | StandardStateBlock           | Produces the propagation model for a set of states                                                                |
 | MeasurementProcessor | StandardMeasurementProcessor | Produces the update model for a given measurement                                                                 |
@@ -113,8 +111,8 @@ to some {term}`pntOS-Python` components. These are outlined below:
 | FusionStrategy       | StandardFusionStrategy       | Manages the estimate and covariance of a state space as it propagates and updates.                                |
 
 The difference between these objects is that they are written against two different APIs
-and are thereby not directly interchangeable. To use one of these navtk objects inside
-{term}`Cobra` you could wrap the navtk object in the corresponding pntOS-Python object
+and are not directly interchangeable as a result. To use navtk objects inside
+{term}`Cobra`, you can wrap the navtk object in the corresponding Cobra object
 and provide it via the corresponding [plugin](./plugins.md).
 
 ```
@@ -143,49 +141,49 @@ to modify the `Pinson15NedBlock` to add an additional state. Then you could:
 
 ASPN is a community-developed data
 standard that allows for consistent interoperability between various systems. Thanks to
-ASPN, {term}`PNT` systems can be modularized allowing developers and engineers to mix
+ASPN, {term}`PNT` systems can be modularized, allowing developers and engineers to mix
 and match components. This results in more cost-effective and diverse development in
 {term}`PNT`.
 
-It may be easier to think of it with an analogy. Consider two people having a
+This might be better conveyed as an analogy. Consider two people having a
 conversation. They are able to effectively communicate because they use the same
-language with the same grammar. In our case, the people are "sensors", the language (or
-words) is the "data", and the grammar is ASPN! Without grammar you can still get your
-words across, but they are much harder to interpret and that is the role ASPN fills.
+language with the same grammar. In our case, the "people" are sensors, the "language" (or
+words) is the data, and the "grammar" is ASPN. Without grammar, words can still be 
+communicated, but they are much harder to interpret. This is the role ASPN fills.
 
 ```
 
-```{dropdown} How are ASPN standards implemented?
+```{dropdown} How are ASPN standards used?
 
-ASPN standards are represented by a set of YAML files. These sets are what make up ASPN
-versions and can be used as a basis for language specific implementations of ASPN. For
-example, the ASPN23 YAML files were used by the IS4S team to construct various
-implementations such as ASPN23-C, ASPN23-Python, ASPN23-LCM, and others. These
-respective emulations have their own methods of replicating the standards; C and LCM
-both use structs whereas Python would use classes. Ultimately, they are all implementing
-the same thing, though at times may have minor differences such ASPN23-LCM adding LCM
-specific fields.
+ASPN standards are codified in ICDs (Interface Control Documents), which are available in
+the form of a set of YAML files. These define ASPN versions and can be used as a basis
+for language-specific representations of ASPN. For example, the IS4S team used the ASPN23
+ICDs to construct various representations such as ASPN23-C, ASPN23-Python, ASPN23-LCM,
+and others. These respective representations uniquely emulate the ICD standards - for
+example, C and LCM both use structs while Python uses classes. Ultimately, they all achieve
+functional realizations of the standard, though the details may have minor differences.
 
 ```
 
 ```{dropdown} What is the difference between ASPN-Python and the Python flavor of ASPN-LCM?
 
-First lets clearly define what each of these are. ASPN-Python is a pure python
-implementation of the ASPN YAMLs. For each ASPN message in those YAMLs, there is a
-Python class designed to be as compliant as possible with the specific ASPN version
-standard it is constructed around. On the other hand, ASPN-LCM aims to achieve the same
-goal while also adding some LCM related fields to its structs. The "Python flavor" is
-simply the code-gen done on the base ASPN-LCM to make it more accessible through Python.
-So, the ASPN-LCM Python flavor is just an interface for users that plan on handling ASPN
-messages and relaying or receiving them through LCM.
+First, let's clearly define what each of these are. ASPN-Python is a pure Python
+representation of the ASPN ICDs (Interface Control Documents). For each ASPN message
+ICD of a given version, there is a Python class designed to be as compliant as possible
+to this standard. On the other hand, ASPN-LCM is a transport ASPN representation, which
+means it is also comprises an IDL (Interface Description Language). In other words,
+ASPN-LCM defines how ASPN is used in the LCM transport protocol. This definition can then
+be used with tools such as `lcm-gen` to generate the different "flavors" of ASPN-LCM. The
+resulting ASPN-LCM Python flavor is just a Python interface for users that need to handle
+ASPN messages and relay or receive them through LCM.
 
 ```
 
 ```{dropdown} How does a pntOS Message relate to ASPN and AspnBase?
 
-In pntOS-python, the {py:obj}`Message<pntos.api.Message>` class functions as a container
-for an ASPN message. Through this, we can attach the source identifier to our messages
-making it easier to route and process within plugins. But, to allow for the pntOS
+In Cobra, the {py:obj}`Message<pntos.api.Message>` class functions as a container
+for an ASPN message. Through this, we can attach the source identifier to our messages,
+making it easier to route and process within plugins. However, to allow for the pntOS
 `Message` to be interoperable for any given ASPN message, we needed a generic type. This
 role is filled by `AspnBase`, a generalized class all ASPN messages inherit from
 allowing for simplified intercommunication within pntOS and its plugins.

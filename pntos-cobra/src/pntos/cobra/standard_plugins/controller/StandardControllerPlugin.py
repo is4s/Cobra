@@ -237,7 +237,7 @@ class StandardControllerPlugin(ControllerPlugin):
         list[CommonPlugin],
     ]:
         """
-        Utility function to ensure ``plugins`` contains enough plugins to run pntOS
+        Utility function to ensure ``plugins`` contains enough plugins to run
         Cobra. Then assigns and dispatches them to the relevant fields on the
         controller. Raises a :class:`RuntimeError` if plugins are
         not as expected.
@@ -299,7 +299,7 @@ class StandardControllerPlugin(ControllerPlugin):
 
     def _main(self) -> None:
         """
-        The main control of pntOS Cobra.
+        The main control of Cobra.
         """
         for transport in self._transport_plugins:
             transport.start_listening()

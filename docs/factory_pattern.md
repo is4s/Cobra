@@ -1,4 +1,4 @@
-# The Factory Pattern in pntOS-Python
+# The Factory Pattern in Cobra
 
 Many plugins don't do much work themselves, but are factories which provide a component to be used
 by another plugin to accomplish a task. Some examples include:
@@ -16,7 +16,7 @@ by another plugin to accomplish a task. Some examples include:
 The last one is of particular interest, as the state model provider is itself a factory pattern
 which provides measurement processors, state blocks, and virtual state blocks.
 
-## The Advantages of the Factory Pattern in pntOS-Python
+## The Advantages of the Factory Pattern in Cobra
 
 This approach adds quite a bit of complexity to the API but also comes with a few distinct
 benefits.
@@ -29,13 +29,13 @@ Preprocessor plugin or to split them up, one per Preprocessor plugin.
 
 ### Get the Job Done With Fewer Plugins
 
-Consider a particular pntOS-Python implementation which requires ten instances of the same class of
+Consider a particular Cobra implementation which requires ten instances of the same class of
 preprocessor. With the factory pattern, the implementation can accomplish this with a single
 Preprocessor plugin. Without the factory pattern, the implementation would need to create ten
 instances of the same Preprocessor plugin.
 
 This applies to all of the plugins which leverage the factory pattern. At first it might not be
-immediately clear why an implementation of pntOS-Python would use multiple instances of a particular
+immediately clear why an implementation of Cobra would use multiple instances of a particular
 component. But consider the cases where an Orchestration plugin is managing multiple filters
 simultaneously. In this case, it might require an instance of each component (e.g. inertial,
 initializer, fusion engine, fusion strategy, and state modeling plugin) for each filter.
@@ -51,7 +51,7 @@ on the rest of the system.
 Say the API were updated to add support for a more advanced filtering model to the {py:obj}`State
 Modeling plugin<pntos.api.StateModelingPlugin>`. Usually a change of that magnitude would require
 incrementing the major version of the API. However, the factory pattern allows for this sort of
-change to be made without breaking existing implementations of pntOS-Python. Existing
+change to be made without breaking existing implementations of Cobra. Existing
 implementations of State Modeling plugins which produce instances of
 {py:obj}`StandardStateModelProvider<pntos.api.StandardStateModelProvider>` would still be considered
 valid and not require any updates after updating the API.

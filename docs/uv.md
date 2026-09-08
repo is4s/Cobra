@@ -1,6 +1,6 @@
 # UV Development Guide
 
-[UV](https://docs.astral.sh/uv/) is a fast, modern Python package and project manager that replaces tools like `pip`, `poetry`, and `virtualenv` with a single unified tool. In {term}`pntOS-Python`, UV manages the workspace containing `pntos-api` and `pntos-cobra` packages, handles all dependencies, and builds distributable wheels.
+[UV](https://docs.astral.sh/uv/) is a fast, modern Python package and project manager that replaces tools like `pip`, `poetry`, and `virtualenv` with a single unified tool. In {term}`Cobra`, UV manages the workspace containing `pntos-api` and `pntos-cobra` packages, handles all dependencies, and builds distributable wheels.
 
 UV offers significant advantages over traditional pip-based workflows:
 
@@ -15,7 +15,7 @@ build on the concepts discussed in [](./pyproject.md).
 ## Common UV Workflows
 
 For quick-reference, here are some of the most common `uv` commands and workflows when
-working within the {term}`pntOS-Python` context. The concepts in this section will be
+working within the {term}`Cobra` context. The concepts in this section will be
 expanded upon in subsequent sections.
 
 ### Quick Reference
@@ -136,9 +136,9 @@ Now, let's dive into greater detail on some important UV concepts.
 
 ## UV Workspaces
 
-UV workspaces manage multiple related packages in a single repository with a unified lock file. {term}`pntOS-Python` uses this structure:
+UV workspaces manage multiple related packages in a single repository with a unified lock file. {term}`Cobra` uses this structure:
 
-- **Root** (`pntos-python`): Meta-package coordinating the workspace
+- **Root** (`pntos-cobra`): Meta-package coordinating the workspace
 - **Members**: `pntos-api` and `pntos-cobra` packages
 
 This allows downstream projects to depend on either package individually while letting developers work with both simultaneously.
@@ -173,14 +173,14 @@ There are several benefits to this workspace approach:
 | **Unified lock file**   | One `uv.lock` ensures consistent versions across all packages                                                                                  |
 | **Instant updates**     | Changes to workspace members immediately available ([editable installs](https://setuptools.pypa.io/en/latest/userguide/development_mode.html)) |
 | **Shared dependencies** | Common packages installed once                                                                                                                 |
-| **Simple commands**     | Single `uv sync` for everything in both top-level meta-project (`pntos-python`) and workspaces (`pntos-api`, `pntos-cobra`)                    |
+| **Simple commands**     | Single `uv sync` for everything in both top-level meta-project (`pntos-cobra`) and workspaces (`pntos-api`, `pntos-cobra`)                    |
 
 ## Build System Configuration
 
 To create distributable wheels, configure the build system in each package's `pyproject.toml`. Both `pntos-api` and `pntos-cobra` use [Hatchling](https://hatch.pypa.io/latest/). Given this structure:
 
 ```
-pntos-python/
+pntos-cobra/
 ├── pyproject.toml
 ├── pntos-api/
 │   ├── pyproject.toml
@@ -293,5 +293,5 @@ git commit
 
 - [UV Documentation](https://docs.astral.sh/uv/)
 - [UV GitHub Issues](https://github.com/astral-sh/uv/issues)
-- [pntOS-Python Installation Guide](installation.md)
+- [Cobra Installation Guide](installation.md)
 - [Contribution Guide](./contributing.md)

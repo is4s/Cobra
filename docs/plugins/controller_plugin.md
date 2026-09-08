@@ -3,13 +3,13 @@
 ## Summary
 The {py:obj}`ControllerPlugin<pntos.api.ControllerPlugin>` is responsible for invoking plugin startup
 logic, choosing the concurrency model, and coordinating any platform-independent plugin activity.
-It is the conceptual *main* function of a {term}`pntOS-Python` {term}`App`.
+It is the conceptual *main* function of a {term}`Cobra` {term}`App`.
 
 ## General Plugin Description
 
 We'll introduce the {py:obj}`ControllerPlugin<pntos.api.ControllerPlugin>` by first considering the
-general construction of a {term}`pntOS-Python` {term}`App`, which is the means by which a user
-creates and starts a {term}`pntOS-Python` system. Every implementation of a {term}`pntOS-Python` {term}`App`
+general construction of a {term}`Cobra` {term}`App`, which is the means by which a user
+creates and starts a {term}`Cobra` system. Every implementation of a {term}`Cobra` {term}`App`
 follows the same general flow: 
 
 1. Set up plugin configuration.
@@ -23,7 +23,7 @@ Aside from selecting the initial batch of plugins to use and setting up any requ
 configuration, all direct interaction is with the {py:obj}`ControllerPlugin<pntos.api.ControllerPlugin>`.
 Thus, the {py:obj}`ControllerPlugin<pntos.api.ControllerPlugin>`, and more specifically its
 {py:meth}`take_control<pntos.api.ControllerPlugin.take_control>` function, could be considered the *on button*
-of the {term}`pntOS-Python` API. Once given control, it is the {py:obj}`ControllerPlugin's<pntos.api.ControllerPlugin>`
+of the {term}`Cobra` API. Once given control, it is the {py:obj}`ControllerPlugin's<pntos.api.ControllerPlugin>`
 responsibility to organize and initialize all the other plugins with the basics they need to run.
 This typically includes:
 
@@ -117,11 +117,11 @@ Those aside, the controller API has only one additional function:
 :lineno-match:
 ```
 
-This function is used to run a specific instantiation of the {term}`pntOS-Python` {term}`API`.
+This function is used to run a specific instantiation of the {term}`Cobra` {term}`API`.
 In fact, the entirety of a {term}`App` is simply setting up the arguments for this function.
 
 ## ControllerPlugin Implementations
-As of this writing {term}`Cobra` has two {py:obj}`ControllerPlugin<pntos.api.ControllerPlugin>` implementations,
+As of this writing, {term}`Cobra` has two {py:obj}`ControllerPlugin<pntos.api.ControllerPlugin>` implementations,
 the {py:obj}`StandardControllerPlugin<pntos.cobra.StandardControllerPlugin>` and the 
 {py:obj}`BuscatControllerPlugin<pntos.cobra.BuscatControllerPlugin>`.
 

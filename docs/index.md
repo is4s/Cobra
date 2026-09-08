@@ -4,12 +4,12 @@ You can adapt this file completely to your liking, but it should at least
 contain the root `toctree` directive.
 -->
 
-# Welcome to pntOS-Python's documentation
+# Welcome to the Cobra documentation
 
 Some good places to get started:
 
 - For more information or if you are new to pntOS, see [](./introduction.md).
-- For instructions on getting pntOS-Python installed see [](./installation.md).
+- For instructions on getting Cobra installed see [](./installation.md).
 - For instructions on running Cobra, see [](./first_app.md).
 
 # Index

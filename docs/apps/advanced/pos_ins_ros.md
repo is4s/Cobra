@@ -1,7 +1,7 @@
 # ROS Transport App
 
 :::{caution}
-This section is only relevant to users who are working within the pntOS-Python repository.
+This section is only relevant to users who are working within the Cobra repository.
 Downstream users will need to write their own apps to run. For help on building your own apps, see
 [The Exercises](../../exercises.md)
 :::

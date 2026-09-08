@@ -192,7 +192,7 @@ def main() -> None:
         StandardRegistryPlugin('Cobra Standard Registry Plugin', config=my_config),
         StandardPreprocessorPlugin('Cobra Standard Preprocessor Plugin'),
         StandardOrchestrationPlugin('Cobra Standard Orchestration Plugin'),
-        AdvancedPreprocessorPlugin('pntOS Extras Preprocessor Plugin'),
+        AdvancedPreprocessorPlugin('Cobra Extras Preprocessor Plugin'),
     ]
 
     # Start the controller, and pass it all of the other plugins to use

@@ -1,25 +1,25 @@
 # Running Your First App
 
 :::{caution}
-This section is only relevant to users who are working within the pntOS-Python repository.
+This section is only relevant to users who are working within the Cobra repository.
 Downstream users will need to write their own apps to run. For help on building your own apps, see
 [The Exercises](./exercises.md)
 :::
 
 In the `pntos-cobra-apps/src/pntos/apps/` directory, there are several off-the-shelf {term}`apps
 <App>` of increasing complexity assembled from off-the-shelf {term}`Cobra` plugins that
-serve to demonstrate {term}`pntOS-Python` and the development process for you to
+serve to demonstrate {term}`Cobra` and the development process for you to
 build your own {term}`apps <App>`. This page serves as an introduction to running an
 arbitrary {term}`Cobra` {term}`app <App>`. For more details on any particular app, refer
 to the corresponding page in the {ref}`tutorial-apps` section of the docs.
 
 ## Running an App
 
-A Python app consists of a Python script containing all plugin imports, config, and code
-needed to start a particular instance of a {term}`pntOS-Python` implementation. The {term}`Cobra` plugin set
-contains a [Transport plugin](./plugins/transport_plugin.md) that retrieves
-{term}`ASPN` messages from an
-[LCM](https://github.com/lcm-proj/lcm)
+A {term}`Cobra` app consists of a Python script containing all plugin imports, config, and code
+needed to start a particular instance of a {term}`Cobra` implementation. 
+
+The core {term}`Cobra` plugin set contains a [Transport plugin](./plugins/transport_plugin.md)
+that retrieves {term}`ASPN` messages from an [LCM](https://github.com/lcm-proj/lcm)
 relay. This allows pntOS to ingest data either from sensors sending ASPN measurements
 live, or (in the case of the tutorial apps) from an LCM log file replaying data over
 the relay.
@@ -33,7 +33,7 @@ These instructions assume an active virtual environment as outlined in the
 [](./installation.md). If you currently have that virtual environment activated, skip to
 [](#select-and-run-an-app).
 
-If you have not yet created a Python virtual environment for the [`pntos-python`
+If you have not yet created a Python virtual environment for the [Cobra
 repository](https://github.com/is4s/pntOS-Python), follow the instructions in [](./installation.md) then go
 to [](#select-and-run-an-app).
 
@@ -47,10 +47,8 @@ from the root directory to enter the virtual environment. The command varies dep
 ### Select and Run an App
 
 The available apps can be found in each subfolder of the `{workspace-root}/pntos-cobra-apps/src/pntos/apps`
-directory. If this is your first time with {term}`pntOS-Python`, it is recommended you
-start with the `pos_ins` app. If you are running your own custom app, just switch out
-the paths to the off-the-shelf apps with the path to your app in the following
-instructions.
+directory. If this is your first time with {term}`Cobra`, starting with the `pos_ins` app
+is recommended.
 
 The available off-the-shelf apps are in the
 {ref}`tutorial-apps` section of these docs.
@@ -223,7 +221,7 @@ java -classpath $VIRTUAL_ENV/lib/python3.*/site-packages/share/java/lcm.jar lcm.
 
 ### Play LCM Log File
 
-The `pntos-python-datasets` package installs a script to find the installed data and start playing
+The `pntos-python-datasets-lcm` package installs a script to find the installed data and start playing
 it back:
 
 ```shell

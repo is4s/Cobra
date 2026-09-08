@@ -1,6 +1,6 @@
 # Measurement Processor Tutorial
 
-This documentation serves as a tutorial for adding a new measurement processor to the standard-level pntOS Cobra state modeling plugin. To do this, a few changes and additions will need to be made in the `{workspace-root}/pntos-cobra/src/pntos/cobra/standard_plugins` directory. The following information describes these changes and the files that you will need to change/add.
+This documentation serves as a tutorial for adding a new measurement processor to the standard-level Cobra state modeling plugin. To do this, a few changes and additions will need to be made in the `{workspace-root}/pntos-cobra/src/pntos/cobra/standard_plugins` directory. The following information describes these changes and the files that you will need to change/add.
 
 ## Add new processor file
 

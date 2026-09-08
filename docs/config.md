@@ -1,9 +1,9 @@
 # Configuration Conventions
 
-The {term}`pntOS-Python` API does not specify a configuration convention, and so
+The {term}`Cobra` API does not specify a configuration convention, and so
 choosing a config convention is left to the implementation. The convention described in
-this document is merely a convenience feature for storing and grabbing config from the
-registry in the {term}`Cobra` environment - plugins are free to interact with the
+this document is merely a convenience feature for storing and retrieving config from the
+registry used in the {term}`Cobra` plugins - plugins are free to interact with the
 registry directly and handle configuration apart from this convention.
 
 In summary, {term}`Cobra's<Cobra>` config comes in the form of python

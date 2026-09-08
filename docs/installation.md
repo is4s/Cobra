@@ -10,13 +10,13 @@ the most-tested platform, but other unix-based platforms are supported as well.
 :class: caution
 
 Cobra is not natively supported on Windows. It is still possible to run Cobra on windows using
-[Windows Subsystem Linux](https://learn.microsoft.com/en-us/windows/wsl/install) (WSL) or a virtual
+[Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install) (WSL) or a virtual
 machine, although both are limited to experimental support in Cobra.
 :::
 
 ## Environment Setup
 
-Setting up your environment is done in three steps: installing native dependencies, cloning the {term}`pntOS-Python` project, and setting up your Python environment.
+Setting up your environment is done in three steps: installing native dependencies, cloning the {term}`Cobra` project, and setting up your Python environment.
 
 ### Install Native Dependencies
 
@@ -39,10 +39,10 @@ sudo apt update && sudo apt install python3 python3-venv git libglib2.0-dev defa
 Users of other operating systems will need to install the above packages using
 their operating system's package manager.
 
-### Cloning pntOS-Python
+### Cloning Cobra
 
-Next, download the {term}`pntOS-Python` project onto your machine. While there are several approaches to do so, we suggest
-you clone the [`pntos-python Git repository`](https://github.com/is4s/pntOS-Python) using:
+Next, download the {term}`Cobra` project onto your machine. While there are several approaches to do so, we suggest
+you clone the [`Cobra Git repository`](https://github.com/is4s/pntOS-Python) using:
 
 ```shell
 git clone https://github.com/is4s/pntOS-Python.git
@@ -82,7 +82,7 @@ Your shell should now be inside the virtual environment. It is recommended that 
 pip install --upgrade pip
 ```
 
-Now we're ready to install {term}`pntOS-Python`. In the project root directory, run:
+Now we're ready to install {term}`Cobra`. In the project root directory, run:
 
 ```shell
 pip install -v -r requirements.txt
@@ -119,7 +119,7 @@ Next, enter the virtual environment:
 
 ```{admonition} Reference
 :class: tip
-For more information on this approach in the context of {term}`pntOS-Python`, see
+For more information on this approach in the context of {term}`Cobra`, see
 [the UV development process documentation](./uv.md).
 ```
 ``````

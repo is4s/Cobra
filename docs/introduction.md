@@ -14,18 +14,18 @@ The pntOS application programming interface (API) is designed to address this
 situation. It has broken up the concept of a {term}`PNT` sensor fusion system into its
 component pieces (called plugins) and defined an API to standardize their interactions,
 allowing for plugins to be individually swappable. In order to aid development of new
-plugins, the [`pntos-python`](https://github.com/is4s/pntOS-Python) repository provides not only a
+plugins, the [Cobra](https://github.com/is4s/pntOS-Python) repository provides not only a
 [full Python API](./autodocs/api.rst), but also a set of plugins and
-{term}`Apps<App>` to serve as a reference implementation (called {term}`Cobra`).
+{term}`Apps<App>` to serve as a reference implementation.
 
 ## Source Code Breakdown
 
 This project consists of the following main parts:
 
-```{table} pntOS-Python Project Breakdown
+```{table} Cobra Project Breakdown
 | Component name                                                                               | Location within the project       | Description                                                                               |
 |:-------------------------------------------------------------------------------------------- |:--------------------------------- |:----------------------------------------------------------------------------------------- |
-| pntOS-Python Architecture Application Programming Interface [(API)](./autodocs/api.rst) | `pntos-api/src/pntos/api/plugins` | Defines a set of plugins and how they are to interact.                                    |
+| Cobra Architecture Application Programming Interface [(API)](./autodocs/api.rst) | `pntos-api/src/pntos/api/plugins` | Defines a set of plugins and how they are to interact.                                    |
 | [Cobra Plugins](./plugins.md)                                                                | `pntos-cobra/src/pntos/cobra`     | Implementation of API - functional Python plugins and helper objects.                     |
 | [Cobra Apps](./first_app.md)                                                                 | `pntos-cobra-apps/src/pntos/apps/` | Each app loads a set of Cobra plugins, defines any config values, and starts the plugins. |
 ```
@@ -33,50 +33,50 @@ This project consists of the following main parts:
 While pntOS is analogous to an operating system in terms of its comprehensive scope, it is not a true
 operating system in the sense of a kernel. For more information, see {ref}`is-pntos-an-operating-system`.
 
-## High Level Overview of pntOS-Python
+## High Level Overview of Cobra
 
-At the top-level, {term}`pntOS-Python` is an API that defines a set of plugins that collectively: accept sensor data from various sensors,
-perform sensor fusion on the sensor data, and finally produce a resulting navigation solution.
-This concept is illustrated below, with an example experimental setup where a {term}`pntOS-Python` implementation is receiving and processing
-data from three sensors and producing a fused navigation solution:
+At the top-level, the {term}`Cobra` API defines a set of plugins that collectively accept sensor data from various sensors,
+perform sensor fusion on the sensor data, and produce a resulting navigation solution.
+This concept is illustrated below, with an example experimental setup where a {term}`Cobra` implementation receieves and processes
+data from three sensors and produces a fused navigation solution:
 
 ```{image} images/pntos_overview.png
 :width: 80%
 :align: center
 ```
 
-In this example, the data comes from the three sensors on the left and is processed by a set of {term}`pntOS-Python` plugins;
-These plugins then produce a solution on the right. Data from all three sensors are accepted by the plugins,
-even though some of the data is in proprietary formats and some of it is in ASPN. This is because the {term}`pntOS-Python` architecture
+In this example, the data comes from the three sensors on the left and is processed by a set of {term}`Cobra` plugins;
+These plugins then produce a solution on the right. Data from all three sensors is accepted by the plugins,
+even though some of the data is in proprietary formats and some of it is in ASPN. This is because the {term}`Cobra` architecture
 accepts both ASPN and non-ASPN data from sensors, and will operate in a heterogeneous environment where both ASPN and
 non-ASPN sensor data is available.
 
 ```{note}
-All navigation data used internally by {term}`pntOS-Python` plugins must be ASPN-formatted (with exceptions
-made for truly exceptional use cases); thus, the cleanest way to send data into a {term}`pntOS-Python` implementation
+All navigation data used internally by {term}`Cobra` plugins must be ASPN-formatted (with exceptions
+made for truly exceptional use cases); thus, the cleanest way to send data into a {term}`Cobra` implementation
 is in the ASPN format, as shown by the "ASPN Native Sensor" in the figure. However, most
 sensors do not output ASPN data natively, and such  non-ASPN sensor data needs to be converted to ASPN before
-it can be used by {term}`pntOS-Python` plugins internally. This conversion can happen in two places:
+it can be used by {term}`Cobra` plugins internally. This conversion can happen in two places:
 
-1. In-between the sensor and the {term}`pntOS-Python` implementation, by using an ASPN adapter that intercepts the data and converts it
+1. In-between the sensor and the {term}`Cobra` implementation, by using an ASPN adapter that intercepts the data and converts it
   to ASPN, as shown by the top sensor in the above figure.
-2. {term}`pntOS-Python` defines a plugin called the [Transport Plugin](./plugins/transport_plugin.md), which is designed to
-  accept non-ASPN sensor data off the wire and convert it to ASPN for use by the other {term}`pntOS-Python` plugins.
-  The middle sensor in the figure above sends proprietary sensor data directly into the {term}`pntOS-Python` implementation, so its data would need
+2. {term}`Cobra` defines a plugin called the [Transport Plugin](./plugins/transport_plugin.md), which is designed to
+  accept non-ASPN sensor data off the wire and convert it to ASPN for use by the other {term}`Cobra` plugins.
+  The middle sensor in the figure above sends proprietary sensor data directly into the {term}`Cobra` implementation, so its data would need
   to be converted into ASPN by a [Transport Plugin](./plugins/transport_plugin.md) inside the implementation.
   We'll learn more about the Transport Plugin and how it converts incoming data to ASPN in the
-  [tour of pntOS-Python](#a-tour-of-pntos-python).
+  [tour of Cobra](#a-tour-of-cobra).
 
 ```
 
-Now that we've covered the top-level objectives of {term}`pntOS-Python`, we will shift gears and take
-a brief tour of {term}`pntOS-Python`, walking through a {term}`pntOS-Python` system and examining
-how the {term}`pntOS-Python` architecture decomposes the "sensor data in, sensor fusion solution out" problem into a set of
+Now that we've covered the top-level objectives of {term}`Cobra`, we will shift gears and take
+a brief tour of {term}`Cobra`, walking through a {term}`Cobra` system and examining
+how the {term}`Cobra` architecture decomposes the "sensor data in, sensor fusion solution out" problem into a set of
 isolated plugins.
 
-## A Tour of pntOS-Python
+## A Tour of Cobra
 
-The {term}`pntOS-Python` black box in the figure from the previous section is really a collection
+The {term}`Cobra` black box in the figure from the previous section is really a collection
 of plugins that are utilized by an app, as shown here:
 
 ```{image} images/pntos_overview2.png
@@ -84,10 +84,10 @@ of plugins that are utilized by an app, as shown here:
 ```
 
 In this tour, we will dive into the details of how one would go about implementing
-each of the components of {term}`pntOS-Python` in the above figure, examining each part of {term}`pntOS-Python` piece by piece
-and discussing how we would create a {term}`pntOS-Python` solution from start to finish.
+each of the components of {term}`Cobra` in the above figure, examining each part of {term}`Cobra` piece by piece
+and discussing how we would create a {term}`Cobra` solution from start to finish.
 We will start at the bottom of the figure with the {term}`App` (which is the entry point into any
-{term}`pntOS-Python` system) and work our way through the control flow. In particular, in this
+{term}`Cobra` system) and work our way through the control flow. In particular, in this
 section we will walk through how:
 
 1. The {term}`App` kickstarts the system, then transfers control to the
@@ -106,11 +106,11 @@ section we will walk through how:
 
 ### The App
 
-All {term}`pntOS-Python` solutions start with an {term}`App`. In {term}`pntOS-Python` terminology, an {term}`App` consists
-of a single Python script that the user may run and produces a working {term}`pntOS-Python` system.
+All {term}`Cobra` solutions start with an {term}`App`. In {term}`Cobra` terminology, an {term}`App` consists
+of a single Python script that the user may run and produces a working {term}`Cobra` system.
 In general, the {term}`App` is responsible for:
 
-1. Importing the desired {term}`pntOS-Python` plugin definitions (from Cobra or elsewhere)
+1. Importing the desired {term}`Cobra` plugin definitions (from the core Cobra plugin set or elsewhere)
 2. Defining any initial config, either from inline structs or from a config file
 3. Creating an instance of a controller plugin
 4. Creating a list of instances of other plugins to pass to the controller, as desired
@@ -119,12 +119,12 @@ In general, the {term}`App` is responsible for:
    list of the other plugins we created in `4.`, and it is now responsible for setting up the system using them.
    Once {py:obj}`ControllerPlugin.take_control()<pntos.api.ControllerPlugin.take_control>` is called,
    the {term}`App`'s job is done, and the {py:obj}`Controller Plugin<pntos.api.ControllerPlugin>` coordinates
-   the {term}`pntOS-Python` system going forward.
+   the {term}`Cobra` system going forward.
 
 ```{note}
 One way to think of an {term}`App` is that it is a simple Python script that kicks off the system, finds the plugins and
 config that we want to use, then hands off control to the {py:obj}`Controller Plugin<pntos.api.ControllerPlugin>`.
-The {py:obj}`Controller Plugin<pntos.api.ControllerPlugin>` is the conceptual "main" function of {term}`pntOS-Python`,
+The {py:obj}`Controller Plugin<pntos.api.ControllerPlugin>` is the conceptual "main" function of {term}`Cobra`,
 in that {py:obj}`ControllerPlugin.take_control()<pntos.api.ControllerPlugin.take_control>` is where the plugins are
 wired up to talk to each other, told to start listening and processing data, and so forth.
 ```
@@ -147,7 +147,7 @@ types:
 | Controller Plugin    | A plugin that receives all the other plugins and takes over control from the App                |
 
 ```{note}
-Most pntOS-Python implementations will also require a registry and logging plugin, but those are
+Most Cobra implementations will also require a registry and logging plugin, but those are
 excluded here for brevity.
 ```
 
@@ -173,7 +173,7 @@ Thus, we will turn our attention towards what is required to implement
 the {py:obj}`take_control()<pntos.api.ControllerPlugin.take_control>` method.
 
 As a parameter, {py:obj}`take_control<pntos.api.ControllerPlugin.take_control>` receives a list of
-plugins that it is supposed to use to set up the {term}`pntOS-Python` system. For example, our
+plugins that it is supposed to use to set up the {term}`Cobra` system. For example, our
 {py:obj}`Controller plugin<pntos.api.ControllerPlugin>` might receive this list of plugins:
 
 ```{literalinclude} ../pntos-cobra-apps/src/pntos/apps/dummy/minimal.py
@@ -235,7 +235,7 @@ that we overlooked.
 
 ### The Mediator and `init_plugin`
 
-In {term}`pntOS-Python`, plugins do not ever directly communicate with each other. Instead, when the
+In {term}`Cobra`, plugins do not ever directly communicate with each other. Instead, when the
 {py:obj}`Controller Plugin<pntos.api.ControllerPlugin>` receives a list of plugins as a parameter to its
 {py:obj}`take_control()<pntos.api.ControllerPlugin.take_control>` method, the first thing the
 {py:obj}`Controller Plugin<pntos.api.ControllerPlugin>` does is pass each plugin in the list a
@@ -243,13 +243,13 @@ In {term}`pntOS-Python`, plugins do not ever directly communicate with each othe
 {py:obj}`init_plugin()<pntos.api.CommonPlugin.init_plugin>` method and passing in the
 {py:obj}`Mediator<pntos.api.Mediator>` as a parameter. Each plugin is then required to save off the
 {py:obj}`Mediator<pntos.api.Mediator>` it was passed, and use it for all communications with other plugins going
-forward. Understanding how the {py:obj}`Mediator<pntos.api.Mediator>` works is vital to understanding the {term}`pntOS-Python`
+forward. Understanding how the {py:obj}`Mediator<pntos.api.Mediator>` works is vital to understanding the {term}`Cobra`
 architecture, as all data that pass from one plugin to another flows through it.
 
 ```{note}
 One way to think of the Mediator is that it is a "communications object". Every plugin is handed a communications
 object when it first starts, and from then on that plugin should use the communications object for all interactions
-with any other {term}`pntOS-Python` plugin.
+with any other {term}`Cobra` plugin.
 ```
 
 ```{note}
@@ -261,7 +261,7 @@ communications between plugins is actually being implemented. While the inversio
 using a Mediator pattern adds complexity, it is necessary to support swappable/pluggable concurrency models.
 ```
 
-Because the design of {term}`pntOS-Python` is such that all plugins must communicate with other plugins via the
+Because the design of {term}`Cobra` is such that all plugins must communicate with other plugins via the
 {py:obj}`Mediator<pntos.api.Mediator>`, that means that our previous figure actually should look like:
 
 ```{image} images/Graph_14.png
@@ -298,7 +298,7 @@ Yet another transport plugin might simulate data,
 or replay it from a log file, and not even connect to a physical network at all.
 
 ```{note}
-Transport plugins are actually bi-directional bridges, translating sensor data _into_ a {term}`pntOS-Python` system
+Transport plugins are actually bi-directional bridges, translating sensor data _into_ a {term}`Cobra` system
 as well as sending data back out _onto_ the network bus. We'll skip the outward direction for
 brevity in this tutorial.
 ```
@@ -401,10 +401,10 @@ it serves as a concrete example of a transport plugin that delivers data into th
 
 ```{note}
 You'll see in the implementation of `start_listening` in `DummyTransport` that a new thread is created
-to send in the zeros. This is because {term}`pntOS-Python` requires that plugins do not block on {term}`pntOS-Python` system threads.
-Since `start_listening` was called by the {term}`pntOS-Python` system, it is not ours to block, and so the `DummyTransport`
+to send in the zeros. This is because {term}`Cobra` requires that plugins do not block on {term}`Cobra` system threads.
+Since `start_listening` was called by the {term}`Cobra` system, it is not ours to block, and so the `DummyTransport`
 creates its own thread to spin in a busy loop and call the mediator. For more information, see the
-page on [Concurrency](concurrency.md) in pntOS-Python.
+page on [Concurrency](concurrency.md) in Cobra.
 ```
 
 ### Back to the Controller
@@ -546,7 +546,7 @@ Plugin<pntos.api.ControllerPlugin>` is tied closely to the concurrency model cho
 the {py:obj}`Controller Plugin<pntos.api.ControllerPlugin>`.
 
 Thus, the {py:obj}`Controller Plugin<pntos.api.ControllerPlugin>` is fundamentally the
-plugin that defines the concurrency model that is used by a {term}`pntOS-Python` solution, because its
+plugin that defines the concurrency model that is used by a {term}`Cobra` solution, because its
 implementation of the {py:obj}`Mediator<pntos.api.Mediator>` defines how plugins interact
 with each other and whether concurrency is used in those interactions. Conceptually,
 the {py:obj}`Controller Plugin<pntos.api.ControllerPlugin>` is the unit of modularity
@@ -597,7 +597,7 @@ a length=1 `List` for the `solution_times` parameter. For example:
   ```
 ````
 
-In most {term}`pntOS-Python` systems, an {py:obj}`Orchestration Plugin<pntos.api.OrchestrationPlugin>` will receive a stream
+In most {term}`Cobra` systems, an {py:obj}`Orchestration Plugin<pntos.api.OrchestrationPlugin>` will receive a stream
 of data from repeated calls to its {py:obj}`process_pntos_message<pntos.api.OrchestrationPlugin.process_pntos_message>`
 method, and it will process those messages during the duration of those calls, doing whatever sensor
 fusion or filtering it sees fit to do internally. Separately, the controller (or some other plugin, via calling
@@ -608,7 +608,7 @@ the goal of an {py:obj}`Orchestration Plugin<pntos.api.OrchestrationPlugin>` is 
 a continuous stream of data and produces filter solutions asynchronously at some later time.
 
 Because the {py:obj}`Orchestration Plugin<pntos.api.OrchestrationPlugin>` is the heart of the navigation
-algorithm in a {term}`pntOS-Python` system, it is a very open-ended plugin. The design of {term}`pntOS-Python` is to
+algorithm in a {term}`Cobra` system, it is a very open-ended plugin. The design of {term}`Cobra` is to
 allow for a flexible architecture that enables any kind of navigation solution to be developed. For example,
 one classical way to implement the {py:obj}`Orchestration Plugin<pntos.api.OrchestrationPlugin>` would be via an
 {term}`EKF`, which propagates and updates to each measurement as it is received (optionally
@@ -632,7 +632,7 @@ code of `DummyOrchestrationPlugin` can be [found
 here](https://github.com/is4s/pntOS-Python/blob/main/pntos-cobra/src/pntos/cobra/dummy_plugins/DummyOrchestrationPlugin.py)
 
 Let's walk through this example step-by-step. We'll skip the imports, which are just bringing in symbols from the
-pntOS-Python APIs. The constructor:
+{term}`Cobra` APIs. The constructor:
 
 ```{literalinclude} ../pntos-cobra/src/pntos/cobra/dummy_plugins/DummyOrchestrationPlugin.py
 :start-at: def __init__
@@ -782,7 +782,7 @@ You should see something like:
 
 ### End of the Tour
 
-This ends the guided tour through {term}`pntOS-Python`. Hopefully at this point you have a top-level understanding
+This ends the guided tour through {term}`Cobra`. Hopefully at this point you have a top-level understanding
 of how an {term}`App` kicks off a system, how the controller sets up a transport to send its data to a mediator,
 how the mediator sends sensor data it receives from the transport through to the orchestration plugin,
 and how an orchestration plugin produces solutions from the sensor data it has received.
@@ -792,9 +792,9 @@ to try next:
 
 | Link                    | Description                                                                                             |
 | ----------------------- | ------------------------------------------------------------------------------------------------------- |
-| [](./plugins.md)        | Explore {term}`pntOS-Python` plugins in greater detail, as well as their {term}`Cobra` implementations. |
+| [](./plugins.md)        | Explore {term}`Cobra` plugins in greater detail, as well as the core plugin implementations.            |
 | [](./installation.md)   | Installation instructions for getting started with {term}`Cobra`.                                       |
 | [](./first_app.md)      | Instructions for running your first {term}`Cobra` tutorial {term}`App`.                                 |
 | {ref}`tutorial-apps`    | Explore the {term}`Cobra` tutorial apps.                                                                |
-| {ref}`pntos_python_api` | Explore {term}`pntOS-Python` documentation.                                                             |
+| {ref}`cobra_api`        | Explore the {term}`Cobra` API documentation.                                                            |
 | [](./cobra.md)          | Explore the {term}`Cobra` documentation.                                                                |

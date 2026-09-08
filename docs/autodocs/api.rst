@@ -1,7 +1,7 @@
 
-.. _pntos_python_api:
+.. _cobra_api:
 
-pntOS Python API
+Cobra API
 ----------------
 
 .. automodule:: pntos.api
