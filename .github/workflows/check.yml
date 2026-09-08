@@ -124,6 +124,32 @@ jobs:
         - name: Run tests
           run: docker exec cobra pytest pntos-cobra pntos-extras --cov
 
+    Windows-Test:
+        name: Windows Test
+        runs-on: windows-latest
+        steps:
+        - uses: actions/checkout@v4
+
+        - name: Set up and run tests
+          run: |
+            python -m venv .venv
+            .venv\Scripts\Activate.ps1
+            python -m pip install -v -r requirements.txt
+            python -m pytest pntos-cobra pntos-extras --cov
+
+    Windows-Run-App:
+        name: Windows Run App
+        runs-on: windows-latest
+        steps:
+        - uses: actions/checkout@v4
+
+        - name: Set up and run app
+          run: |
+            python -m venv .venv
+            .venv\Scripts\Activate.ps1
+            python -m pip install -v -r requirements.txt
+            python -m pytest pntos-cobra-apps -k test_standard_pos_ins_app -s
+
     Dependency-Upgrade-Test:
         name: Dependency Upgrade Test
         runs-on: ubuntu-24.04
