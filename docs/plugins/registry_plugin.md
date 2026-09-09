@@ -20,7 +20,7 @@ the following section, [](#cobra-implementation-standardregistryplugin).
 
 ```{admonition} Reference
 The Python Registry Plugin API lives in
-[pntos-api/src/pntos/api/plugins/registry.py](https://github.com/is4s/pntOS-Python/blob/main/pntos-api/src/pntos/api/plugins/registry.py).
+[pntos-api/src/pntos/api/plugins/registry.py](https://github.com/is4s/cobra/blob/main/pntos-api/src/pntos/api/plugins/registry.py).
 For the rendered documentation from this file, see {py:obj}`pntos.api.RegistryPlugin`.
 ```
 
@@ -547,7 +547,7 @@ Cobra's Registry Plugin implementation is the
 {py:obj}`StandardRegistry<pntos.cobra.internal.StandardRegistry>` and a
 {py:obj}`StandardKeyValueStore<pntos.cobra.internal.StandardKeyValueStore>`. These
 implementations can be found in
-[pntos-cobra/src/pntos/cobra/standard_plugins/StandardRegistryPlugin.py](https://github.com/is4s/pntOS-Python/blob/main/pntos-cobra/src/pntos/cobra/standard_plugins/StandardRegistryPlugin.py)
+[pntos-cobra/src/pntos/cobra/standard_plugins/StandardRegistryPlugin.py](https://github.com/is4s/cobra/blob/main/pntos-cobra/src/pntos/cobra/standard_plugins/StandardRegistryPlugin.py)
 in the {term}`Cobra` repository.
 
 ### Loading Config

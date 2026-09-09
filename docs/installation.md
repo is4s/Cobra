@@ -42,10 +42,10 @@ their operating system's package manager.
 ### Cloning Cobra
 
 Next, download the {term}`Cobra` project onto your machine. While there are several approaches to do so, we suggest
-you clone the [`Cobra Git repository`](https://github.com/is4s/pntOS-Python) using:
+you clone the [`Cobra Git repository`](https://github.com/is4s/cobra) using:
 
 ```shell
-git clone https://github.com/is4s/pntOS-Python.git
+git clone https://github.com/is4s/Cobra.git
 ```
 
 Finally, you are now ready to set up your Python environment in the next section.
@@ -67,7 +67,7 @@ We will begin by creating and entering a clean Python virtual environment (venv)
 `.venv` folder by running the following command in the project root directory:
 
 ```shell
-python3 -m venv .venv --prompt pntos-python
+python3 -m venv .venv --prompt cobra
 ```
 
 Next, enter the virtual environment. The steps to do this vary depending on your shell:

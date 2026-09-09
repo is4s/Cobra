@@ -2,4 +2,4 @@
 
 A set of plugins based off the Cobra API.
 
-For more information, visit the [Cobra documentation](https://is4s.github.io/pntOS-Python/).
+For more information, visit the [Cobra documentation](https://is4s.github.io/Cobra/).

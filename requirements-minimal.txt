@@ -2,19 +2,19 @@
 #    uv export --frozen --no-dev --no-hashes -o requirements-minimal.txt
 -e ./pntos-api
     # via
+    #   cobra
     #   pntos-cobra
     #   pntos-cobra-apps
     #   pntos-extras
-    #   pntos-python
 -e ./pntos-cobra
     # via
+    #   cobra
     #   pntos-cobra-apps
     #   pntos-extras
-    #   pntos-python
 -e ./pntos-cobra-apps
-    # via pntos-python
+    # via cobra
 -e ./pntos-extras
-    # via pntos-python
+    # via cobra
 annotated-types==0.7.0
     # via pydantic
 aspn23==0.1.0
@@ -88,22 +88,22 @@ markupsafe==3.0.2
     #   werkzeug
 matplotlib==3.10.5
     # via
+    #   cobra
     #   navanalysis-lcm
     #   pntos-cobra
-    #   pntos-python
 mdit-py-plugins==0.4.2
     # via textual
 mdurl==0.1.2
     # via markdown-it-py
 navanalysis-lcm==0.1.5
     # via
+    #   cobra
     #   navanalysis-ros
     #   pntos-cobra
-    #   pntos-python
 navanalysis-ros==0.1.2
     # via
+    #   cobra
     #   pntos-cobra
-    #   pntos-python
 navtk==2.1.0.post7.dev0
     # via
     #   navanalysis-lcm
@@ -132,10 +132,10 @@ pntos-cobra-frontend==0.1.0
     # via pntos-cobra
 pntos-python-datasets-lcm==0.1.0
     # via
+    #   cobra
     #   pntos-cobra-apps
-    #   pntos-python
 pntos-python-datasets-ros==0.1.0
-    # via pntos-python
+    # via cobra
 pydantic==2.13.4
     # via pntos-cobra
 pydantic-core==2.46.4
@@ -182,9 +182,9 @@ tqdm==4.67.1
     #   pntos-cobra
 typing-extensions==4.14.1
     # via
+    #   cobra
     #   pntos-api
     #   pntos-cobra
-    #   pntos-python
     #   pydantic
     #   pydantic-core
     #   textual

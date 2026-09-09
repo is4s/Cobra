@@ -1,5 +1,5 @@
 [project]
-name = "pntos-python"
+name = "cobra"
 version = "2.1.0-0.dev0"
 description = "A meta package for pntOS that contains the components of pntOS."
 readme = "README.md"
