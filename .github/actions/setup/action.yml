@@ -30,7 +30,7 @@ runs:
       id: pull
       shell: bash
       continue-on-error: true
-      run: docker pull ghcr.io/${{ steps.repo.outputs.owner }}/pntos-python:pntos-python-${{ steps.dockerfile-hash.outputs.hash }}
+      run: docker pull ghcr.io/${{ steps.repo.outputs.owner }}/cobra:cobra-${{ steps.dockerfile-hash.outputs.hash }}
 
     - name: Set up Docker Buildx
       if: steps.pull.outcome == 'failure'
@@ -42,18 +42,18 @@ runs:
       uses: docker/build-push-action@v5
       with:
           push: true
-          tags: ghcr.io/${{ steps.repo.outputs.owner }}/pntos-python:pntos-python-${{ steps.dockerfile-hash.outputs.hash }}
+          tags: ghcr.io/${{ steps.repo.outputs.owner }}/cobra:cobra-${{ steps.dockerfile-hash.outputs.hash }}
       env:
         SOURCE_DATE_EPOCH: 0
 
     - name: Pull image after build
       if: steps.pull.outcome == 'failure'
       shell: bash
-      run: docker pull ghcr.io/${{ steps.repo.outputs.owner }}/pntos-python:pntos-python-${{ steps.dockerfile-hash.outputs.hash }}
+      run: docker pull ghcr.io/${{ steps.repo.outputs.owner }}/cobra:cobra-${{ steps.dockerfile-hash.outputs.hash }}
 
     - name: Retag image
       shell: bash
-      run: docker tag ghcr.io/${{ steps.repo.outputs.owner }}/pntos-python:pntos-python-${{ steps.dockerfile-hash.outputs.hash }} pntos-python
+      run: docker tag ghcr.io/${{ steps.repo.outputs.owner }}/cobra:cobra-${{ steps.dockerfile-hash.outputs.hash }} cobra
 
     - name: Ensure cache directory exists
       shell: bash
@@ -69,7 +69,7 @@ runs:
 
     - name: Spin up docker container
       shell: bash
-      run: docker run --rm -dit -v $(pwd):/work -v ~/.cache:/root/.cache/uv --name pntos-python pntos-python bash
+      run: docker run --rm -dit -v $(pwd):/work -v ~/.cache:/root/.cache/uv --name cobra cobra bash
 
     - name: uv sync
       if: inputs.sync == 'true'
@@ -77,9 +77,9 @@ runs:
       run: |
         set -xe
         if [ "${{ inputs.python }}" != "default" ]; then
-          docker exec pntos-python uv sync --python ${{ inputs.python }}
+          docker exec cobra uv sync --python ${{ inputs.python }}
         else
-          docker exec pntos-python uv sync
+          docker exec cobra uv sync
         fi
 
     - name: Save uv cache

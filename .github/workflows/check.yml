@@ -16,7 +16,7 @@ jobs:
           uses: ./.github/actions/setup
 
         - name: Run ruff check
-          run: docker exec pntos-python ruff check
+          run: docker exec cobra ruff check
 
     ruff-format:
         name: ruff format
@@ -28,7 +28,7 @@ jobs:
           uses: ./.github/actions/setup
 
         - name: Run ruff format
-          run: docker exec pntos-python ruff format --diff
+          run: docker exec cobra ruff format --diff
 
     pyproject-format:
         name: pyproject format
@@ -43,7 +43,7 @@ jobs:
           run: |
             set -xe
             # Run the formatter to see if it produces a diff.
-            docker exec pntos-python pyproject-fmt pyproject.toml pntos-*/pyproject.toml
+            docker exec cobra pyproject-fmt pyproject.toml pntos-*/pyproject.toml
             # If there's a diff, fail the stage.
             git diff --exit-code
 
@@ -59,8 +59,8 @@ jobs:
         - name: Run app sync check
           run: |
             set -xe
-            docker exec pntos-python git config --global --add safe.directory /work
-            docker exec pntos-python util/check_sync.sh
+            docker exec cobra git config --global --add safe.directory /work
+            docker exec cobra util/check_sync.sh
 
     api-synchronization:
         name: API Synchronization
@@ -72,7 +72,7 @@ jobs:
           uses: ./.github/actions/setup
 
         - name: Run API sync check
-          run: docker exec pntos-python util/api_synchronization/compare_apis.py
+          run: docker exec cobra util/api_synchronization/compare_apis.py
 
     Requirements-up-to-date:
         name: Requirements up-to-date
@@ -87,8 +87,8 @@ jobs:
           run: |
             set -xe
             # Generate requirements*.txt files
-            docker exec pntos-python uv export --frozen --no-dev --no-hashes -o requirements-minimal.txt
-            docker exec pntos-python uv export --frozen --no-hashes -o requirements.txt
+            docker exec cobra uv export --frozen --no-dev --no-hashes -o requirements-minimal.txt
+            docker exec cobra uv export --frozen --no-hashes -o requirements.txt
             # If there's still a diff, then there's unsynced changes; fail the job.
             git diff --exit-code
 
@@ -102,7 +102,7 @@ jobs:
           uses: ./.github/actions/setup
 
         - name: Run tests
-          run: docker exec pntos-python pytest pntos-cobra pntos-extras --cov
+          run: docker exec cobra pytest pntos-cobra pntos-extras --cov
 
         - name: Save coverage report
           uses: actions/upload-artifact@v4
@@ -122,7 +122,7 @@ jobs:
             python: 3.14
 
         - name: Run tests
-          run: docker exec pntos-python pytest pntos-cobra pntos-extras --cov
+          run: docker exec cobra pytest pntos-cobra pntos-extras --cov
 
     Dependency-Upgrade-Test:
         name: Dependency Upgrade Test
@@ -136,13 +136,13 @@ jobs:
             sync: false
 
         - name: Upgrade
-          run: docker exec pntos-python uv sync --upgrade
+          run: docker exec cobra uv sync --upgrade
 
         - name: Check
           run: |
-            docker exec pntos-python ty check
-            docker exec pntos-python ruff check
-            docker exec pntos-python pytest pntos-cobra pntos-extras
+            docker exec cobra ty check
+            docker exec cobra ruff check
+            docker exec cobra pytest pntos-cobra pntos-extras
 
     ROS-Test:
         name: ROS Transport Tests
@@ -158,11 +158,11 @@ jobs:
         - name: Run tests
           run: |
             set -xe
-            docker exec pntos-python git clone --depth 1 https://github.com/Open-PNT/firehose-outputs.git
-            docker exec pntos-python bash -c "cd firehose-outputs &&
+            docker exec cobra git clone --depth 1 https://github.com/Open-PNT/firehose-outputs.git
+            docker exec cobra bash -c "cd firehose-outputs &&
                                             git fetch --depth 1 origin $FIREHOSE_OUTPUTS_VERSION &&
                                             git checkout $FIREHOSE_OUTPUTS_VERSION"
-            docker exec pntos-python bash -c ". firehose-outputs/ros_devel/jazzy/setup.bash &&
+            docker exec cobra bash -c ". firehose-outputs/ros_devel/jazzy/setup.bash &&
                                             pytest pntos-cobra/tests/test_aspn_ros.py"
 
     ty:
@@ -176,7 +176,7 @@ jobs:
         - name: Run tests
           run: |
             set -xe
-            docker exec pntos-python ty check
+            docker exec cobra ty check
 
     documentation-check:
         name: Documentation check
@@ -188,7 +188,7 @@ jobs:
           uses: ./.github/actions/setup
 
         - name: Build docs
-          run: docker exec -e TZ=UTC pntos-python util/build_docs.sh
+          run: docker exec -e TZ=UTC cobra util/build_docs.sh
 
         # On non-main pushes, archive the docs.
         - name: Archive Docs
@@ -215,7 +215,7 @@ jobs:
           uses: ./.github/actions/setup
 
         - name: Build docs with external link check
-          run: docker exec -e TZ=UTC pntos-python sphinx-build -b linkcheck --exception-on-warning docs/ docs/build/
+          run: docker exec -e TZ=UTC cobra sphinx-build -b linkcheck --exception-on-warning docs/ docs/build/
 
     standard-and-tutorial-apps:
         name: Run ${{ matrix.app }}
@@ -245,7 +245,7 @@ jobs:
           uses: ./.github/actions/setup
 
         - name: Run app
-          run: docker exec pntos-python pytest pntos-cobra-apps -k ${{ matrix.app }} -s
+          run: docker exec cobra pytest pntos-cobra-apps -k ${{ matrix.app }} -s
 
     ROS-App:
         name: ROS Transport App
@@ -261,11 +261,11 @@ jobs:
         - name: Run app
           run: |
             set -xe
-            docker exec pntos-python git clone --depth 1 https://github.com/Open-PNT/firehose-outputs.git
-            docker exec pntos-python bash -c "cd firehose-outputs &&
+            docker exec cobra git clone --depth 1 https://github.com/Open-PNT/firehose-outputs.git
+            docker exec cobra bash -c "cd firehose-outputs &&
                                             git fetch --depth 1 origin $FIREHOSE_OUTPUTS_VERSION &&
                                             git checkout $FIREHOSE_OUTPUTS_VERSION"
-            docker exec pntos-python bash -c ". firehose-outputs/ros_devel/jazzy/setup.bash &&
+            docker exec cobra bash -c ". firehose-outputs/ros_devel/jazzy/setup.bash &&
                                             pytest pntos-cobra-apps -k test_advanced_pos_ins_ros_app -s"
 
     Advanced-UI-App:
@@ -280,7 +280,7 @@ jobs:
         - name: Run app
           run: |
             set -xe
-            docker exec pntos-python pytest pntos-cobra-apps -k test_ui_app -s
+            docker exec cobra pytest pntos-cobra-apps -k test_ui_app -s
 
     pip-workflow:
         name: Test ${{ matrix.requirements }} pip workflow
@@ -309,8 +309,8 @@ jobs:
         - name: Install Python packages
           run: |
             set -xe
-            docker exec pntos-python python3 -m venv /work/.venv
-            docker exec pntos-python .venv/bin/pip install -v -r ${{ matrix.requirements }}
+            docker exec cobra python3 -m venv /work/.venv
+            docker exec cobra .venv/bin/pip install -v -r ${{ matrix.requirements }}
 
         - name: Save pip cache
           uses: actions/cache/save@v4
@@ -319,7 +319,7 @@ jobs:
             key: pip-cache-${{ matrix.requirements }}-${{ hashFiles(matrix.requirements) }}
 
         - name: Run an app
-          run: docker exec pntos-python postprocessing/run_app_and_record_data.py pntos-cobra-apps/src/pntos/apps/standard/pos_ins.py
+          run: docker exec cobra postprocessing/run_app_and_record_data.py pntos-cobra-apps/src/pntos/apps/standard/pos_ins.py
 
     Copyright:
         name: Copyright year
