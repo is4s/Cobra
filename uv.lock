@@ -1609,7 +1609,7 @@ wheels = [
 
 [[package]]
 name = "pntos-cobra"
-version = "2.1.0.post0.dev4"
+version = "2.0.0"
 source = { editable = "pntos-cobra" }
 dependencies = [
     { name = "aspn23" },
