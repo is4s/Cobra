@@ -111,7 +111,7 @@ manages all other plugins, calling its {py:meth}`shutdown_plugin()<pntos.api.Com
 should trigger an orderly shutdown of all other plugins.
 
 Those aside, the controller API has only one additional function:
-```{literalinclude} ../../pntos-api/src/pntos/api/plugins/controller.py
+```{literalinclude} ../../pntos-cobra-api/src/pntos/api/plugins/controller.py
 :pyobject: ControllerPlugin.take_control
 :end-at: "-> None"
 :lineno-match:

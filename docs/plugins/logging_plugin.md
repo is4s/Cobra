@@ -10,10 +10,10 @@ sink (console, file, network, etc.) with four severity levels:
 ## API Overview
 
 The {py:obj}`LoggingPlugin<pntos.api.LoggingPlugin>` API
-([pntos-api/src/pntos/api/plugins/logging.py](../../pntos-api/src/pntos/api/plugins/logging.py))
+([pntos-cobra-api/src/pntos/api/plugins/logging.py](../../pntos-cobra-api/src/pntos/api/plugins/logging.py))
 only defines one method beyond {py:obj}`CommonPlugin<pntos.api.CommonPlugin>`:
 
-```{literalinclude} ../../pntos-api/src/pntos/api/plugins/logging.py
+```{literalinclude} ../../pntos-cobra-api/src/pntos/api/plugins/logging.py
 :lines: 52-68
 :language: python
 ```
@@ -34,7 +34,7 @@ The {py:obj}`LoggingPlugin.log()<pntos.api.LoggingPlugin.log>` method accepts a 
 
 Plugins log messages through {py:obj}`Mediator.log_message()<pntos.api.Mediator.log_message>`:
 
-```{literalinclude} ../../pntos-api/src/pntos/api/plugins/common.py
+```{literalinclude} ../../pntos-cobra-api/src/pntos/api/plugins/common.py
 :pyobject: Mediator.log_message
 :language: python
 ```

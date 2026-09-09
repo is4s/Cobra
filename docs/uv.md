@@ -1,6 +1,6 @@
 # UV Development Guide
 
-[UV](https://docs.astral.sh/uv/) is a fast, modern Python package and project manager that replaces tools like `pip`, `poetry`, and `virtualenv` with a single unified tool. In {term}`Cobra`, UV manages the workspace containing `pntos-api` and `pntos-cobra` packages, handles all dependencies, and builds distributable wheels.
+[UV](https://docs.astral.sh/uv/) is a fast, modern Python package and project manager that replaces tools like `pip`, `poetry`, and `virtualenv` with a single unified tool. In {term}`Cobra`, UV manages the workspace containing `pntos-cobra-api` and `pntos-cobra` packages, handles all dependencies, and builds distributable wheels.
 
 UV offers significant advantages over traditional pip-based workflows:
 
@@ -30,7 +30,7 @@ expanded upon in subsequent sections.
 | **Remove dependency**            | `uv remove numpy`                 | Also uninstalls if no longer needed     |
 | **Update all dependencies**      | `uv lock`                         | Respects version constraints            |
 | **Update specific package**      | `uv lock --upgrade-package numpy` | Only updates one package                |
-| **Build wheel**                  | `uv build pntos-api`              | Creates wheel in `dist/` directory      |
+| **Build wheel**                  | `uv build pntos-cobra-api`        | Creates wheel in `dist/` directory      |
 | **Run command**                  | `uv run pytest`                   | Execute without activating venv         |
 | **Clean cache**                  | `uv cache clean`                  | Clear cached packages                   |
 | **Reinstall packages**           | `uv sync --reinstall`             | Force reinstall all packages            |
@@ -77,7 +77,7 @@ uv remove --dev pytest
 ```
 Uninstalls the package if no longer needed by other dependencies.
 
-**Note:** Workspace member dependencies (`pntos-api`, `pntos-cobra`) are automatically installed as editable packages.
+**Note:** Workspace member dependencies (`pntos-cobra-api`, `pntos-cobra`) are automatically installed as editable packages.
 
 ````
 
@@ -100,7 +100,7 @@ uv export --frozen --no-dev --no-hashes -o requirements-minimal.txt
 
 **Build wheels:**
 ```shell
-uv build pntos-api pntos-cobra
+uv build pntos-cobra-api pntos-cobra
 ```
 Creates wheels in `dist/` directory. Requires proper `[build-system]` configuration (see [Build System Configuration](#build-system-configuration)).
 
@@ -139,7 +139,7 @@ Now, let's dive into greater detail on some important UV concepts.
 UV workspaces manage multiple related packages in a single repository with a unified lock file. {term}`Cobra` uses this structure:
 
 - **Root** (`pntos-cobra`): Meta-package coordinating the workspace
-- **Members**: `pntos-api` and `pntos-cobra` packages
+- **Members**: `pntos-cobra-api` and `pntos-cobra` packages
 
 This allows downstream projects to depend on either package individually while letting developers work with both simultaneously.
 
@@ -150,7 +150,7 @@ Example workspace configuration from the root `pyproject.toml`:
 ```toml
 [project]
 dependencies = [
-    "pntos-api",    # The [tool.uv.*] fields below tell uv what to do with these
+    "pntos-cobra-api",    # The [tool.uv.*] fields below tell uv what to do with these
     "pntos-cobra",
     # Other deps
 ]
@@ -159,10 +159,10 @@ dependencies = [
 package = false  # Meta-package, not distributed
 
 [tool.uv.workspace]
-members = ["pntos-api", "pntos-cobra"]
+members = ["pntos-cobra-api", "pntos-cobra"]
 
 [tool.uv.sources]
-pntos-api = { workspace = true }     # Use local version
+pntos-cobra-api = { workspace = true }     # Use local version
 pntos-cobra = { workspace = true }
 ```
 
@@ -173,16 +173,16 @@ There are several benefits to this workspace approach:
 | **Unified lock file**   | One `uv.lock` ensures consistent versions across all packages                                                                                  |
 | **Instant updates**     | Changes to workspace members immediately available ([editable installs](https://setuptools.pypa.io/en/latest/userguide/development_mode.html)) |
 | **Shared dependencies** | Common packages installed once                                                                                                                 |
-| **Simple commands**     | Single `uv sync` for everything in both top-level meta-project (`pntos-cobra`) and workspaces (`pntos-api`, `pntos-cobra`)                    |
+| **Simple commands**     | Single `uv sync` for everything in both top-level meta-project (`pntos-cobra`) and workspaces (`pntos-cobra-api`, `pntos-cobra`)                    |
 
 ## Build System Configuration
 
-To create distributable wheels, configure the build system in each package's `pyproject.toml`. Both `pntos-api` and `pntos-cobra` use [Hatchling](https://hatch.pypa.io/latest/). Given this structure:
+To create distributable wheels, configure the build system in each package's `pyproject.toml`. Both `pntos-cobra-api` and `pntos-cobra` use [Hatchling](https://hatch.pypa.io/latest/). Given this structure:
 
 ```
 pntos-cobra/
 ├── pyproject.toml
-├── pntos-api/
+├── pntos-cobra-api/
 │   ├── pyproject.toml
 │   └── src/
 │       └── pntos/
@@ -286,7 +286,7 @@ git commit
 | **Cache issues**          | Stale packages, corruption suspected                   | • `uv cache clean`<br>• Delete and recreate: `rm -rf .venv && uv sync`<br>• `uv sync --reinstall`                                                                                                                   |
 | **Stale lock file**       | CI fails with "lock file out of sync"                  | • Regenerate: `uv lock`<br>• Sync and commit: `uv sync && git add uv.lock requirements*.txt`                                                                                                                        |
 | **Build failures**        | `uv build` errors, missing dependencies                | • Verify `[build-system]` in `pyproject.toml`<br>• Check `[tool.hatch.build.targets.wheel]` points to correct package<br>• Enable `allow-direct-references = true` for Git deps<br>• Run `uv sync` first            |
-| **Workspace issues**      | Members not recognized, changes not reflected          | • Verify workspace config in root `pyproject.toml`<br>• Check member directories have valid `pyproject.toml`<br>• Reinstall: `uv sync --reinstall-package pntos-api`<br>• Ensure package names match across configs |
+| **Workspace issues**      | Members not recognized, changes not reflected          | • Verify workspace config in root `pyproject.toml`<br>• Check member directories have valid `pyproject.toml`<br>• Reinstall: `uv sync --reinstall-package pntos-cobra-api`<br>• Ensure package names match across configs |
 | **Performance issues**    | Commands unusually slow                                | • Check cache is enabled: `uv cache dir`<br>• Verify network connectivity<br>• Use `--offline` for repeated installs                                                                                                |
 
 **Additional Resources:**

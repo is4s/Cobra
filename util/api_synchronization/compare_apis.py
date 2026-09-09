@@ -97,7 +97,7 @@ def main(revision: str) -> None:
         print(f'Cloning firehose-outputs to {firehose_path}')
         Repo.clone_from(ASPN_GENERATED_URL, firehose_path, depth=1)
         c_path = c_api_path / 'pntos/'
-        py_path = Path('pntos-api/src/pntos/api/')
+        py_path = Path('pntos-cobra-api/src/pntos/api/')
 
         exit_val = compare_dir(
             c_path, py_path, c_api_path.as_posix(), aspn_path.as_posix(), bad_mods

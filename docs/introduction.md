@@ -25,7 +25,7 @@ This project consists of the following main parts:
 ```{table} Cobra Project Breakdown
 | Component name                                                                               | Location within the project       | Description                                                                               |
 |:-------------------------------------------------------------------------------------------- |:--------------------------------- |:----------------------------------------------------------------------------------------- |
-| Cobra Architecture Application Programming Interface [(API)](./autodocs/api.rst) | `pntos-api/src/pntos/api/plugins` | Defines a set of plugins and how they are to interact.                                    |
+| Cobra Architecture Application Programming Interface [(API)](./autodocs/api.rst) | `pntos-cobra-api/src/pntos/api/plugins` | Defines a set of plugins and how they are to interact.                                    |
 | [Cobra Plugins](./plugins.md)                                                                | `pntos-cobra/src/pntos/cobra`     | Implementation of API - functional Python plugins and helper objects.                     |
 | [Cobra Apps](./first_app.md)                                                                 | `pntos-cobra-apps/src/pntos/apps/` | Each app loads a set of Cobra plugins, defines any config values, and starts the plugins. |
 ```
@@ -344,7 +344,7 @@ has a lot of fields on it for things like logging, config, and so forth. But the
 here is {py:obj}`Mediator.process_pntos_message(message)<pntos.api.Mediator.process_pntos_message>`.
 The docstring reads:
 
-```{literalinclude} ../pntos-api/src/pntos/api/plugins/common.py
+```{literalinclude} ../pntos-cobra-api/src/pntos/api/plugins/common.py
 :language: none
 :start-at: Send a new message to the system for arbitrary processing.
 :end-at: solution.
@@ -354,7 +354,7 @@ If we look at the type of the parameter that
 {py:obj}`Mediator.process_pntos_message(message)<pntos.api.Mediator.process_pntos_message>`
 accepts, we see that it is a {py:obj}`pntos.api.Message<pntos.api.Message>`, which is defined as:
 
-```{literalinclude} ../pntos-api/src/pntos/api/plugins/common.py
+```{literalinclude} ../pntos-cobra-api/src/pntos/api/plugins/common.py
 :language: none
 :start-at: A container for an ASPN message.
 :end-at: A container for an ASPN message.

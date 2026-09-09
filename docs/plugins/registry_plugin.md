@@ -1,5 +1,5 @@
 # Registry Plugin
-
+<!--FIXME: api links-->
 The {py:obj}`Registry Plugin<pntos.api.RegistryPlugin>` serves as a factory for
 {py:obj}`Registry<pntos.api.Registry>` objects which implement a [group-key-value](#what-is-a-group-key-value-store)
 registry available to all pntOS plugins via the
@@ -20,7 +20,7 @@ the following section, [](#cobra-implementation-standardregistryplugin).
 
 ```{admonition} Reference
 The Python Registry Plugin API lives in
-[pntos-api/src/pntos/api/plugins/registry.py](https://github.com/is4s/cobra/blob/main/pntos-api/src/pntos/api/plugins/registry.py).
+[pntos-cobra-api/src/pntos/api/plugins/registry.py](https://github.com/is4s/cobra/blob/main/pntos-api/src/pntos/api/plugins/registry.py).
 For the rendered documentation from this file, see {py:obj}`pntos.api.RegistryPlugin`.
 ```
 

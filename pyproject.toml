@@ -19,8 +19,8 @@ dependencies = [
     "matplotlib",
     "navanalysis-lcm>=0.1.5",
     "navanalysis-ros>=0.1.2",
-    "pntos-api",
     "pntos-cobra",
+    "pntos-cobra-api",
     "pntos-cobra-apps",
     "pntos-python-datasets-lcm==0.1.0",
     "pntos-python-datasets-ros==0.1.0",
@@ -48,11 +48,11 @@ dev = [
 ]
 
 [tool.uv]
-sources.pntos-api = { workspace = true }
 sources.pntos-cobra = { workspace = true }
+sources.pntos-cobra-api = { workspace = true }
 sources.pntos-cobra-apps = { workspace = true }
 package = false
-workspace.members = [ "pntos-api", "pntos-cobra", "pntos-cobra-apps" ]
+workspace.members = [ "pntos-cobra", "pntos-cobra-api", "pntos-cobra-apps" ]
 
 [tool.ruff]
 format.quote-style = "single"
@@ -117,7 +117,7 @@ lint.per-file-ignores."*/tests/*" = [
 ]
 lint.per-file-ignores."docs/*" = [ "D" ]
 lint.per-file-ignores."internal.py" = [ "PLC0414" ]
-lint.per-file-ignores."pntos-api/*" = [ "PIE" ]
+lint.per-file-ignores."pntos-cobra-api/*" = [ "PIE" ]
 lint.per-file-ignores."pntos-cobra-apps/*" = [ "D" ]
 lint.per-file-ignores."pntos-cobra/*" = [ "D" ]
 lint.per-file-ignores."postprocessing/*" = [ "D" ]
@@ -153,7 +153,7 @@ run.omit = [
     "*/ros_devel/*",
     # upstream ROS
     "/opt/ros/*",
-    "pntos-api/*",
+    "pntos-cobra-api/*",
     # App-running utils
     "pntos-cobra/src/pntos/cobra/utils/apps.py",
 ]

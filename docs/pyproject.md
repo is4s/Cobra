@@ -12,19 +12,21 @@ Each Python package is configured via `pyproject.toml`, which defines metadata, 
 
 ```toml
 [project]
-name = "pntos-api"
-version = "0.1.0.dev0"
-description = "The API specification for pntOS"
+name = "pntos-cobra-api"
+version = "2.1.0-0.dev2"
+description = "The API specification for pntOS, ported into pure Python."
 readme = "README.md"
+license = "Apache-2.0"
+license-files = [ "LICENSE" ]
 authors = [ { name = "IS4S", email = "pntos@is4s.com" } ]
-requires-python = ">=3.10"
-
+requires-python = ">=3.10,<3.15"
 classifiers = [
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
 ]
 ```
 
