@@ -1608,21 +1608,6 @@ wheels = [
 ]
 
 [[package]]
-name = "pntos-api"
-version = "2.1.0.post0.dev2"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "aspn23" },
-    { name = "numpy", version = "1.26.4", source = { registry = "https://pypi.org/simple" }, marker = "sys_platform != 'win32'" },
-    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11' and sys_platform == 'win32'" },
-    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11' and sys_platform == 'win32'" },
-    { name = "typing-extensions" },
-]
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/1d/f0/fb5c60c9d3dc9f212baaf1f8aa66eb3f09f85473699f72c3926547a31b00/pntos_api-2.1.0.post0.dev2-py3-none-any.whl", hash = "sha256:a47002ce97894e99126e2b6776570313ba3fa723dd94ad43e7a377fa282385f9", size = 51675, upload-time = "2026-08-14T19:59:45.014Z" },
-]
-
-[[package]]
 name = "pntos-cobra"
 version = "2.1.0.post0.dev4"
 source = { editable = "pntos-cobra" }
@@ -1640,7 +1625,7 @@ dependencies = [
     { name = "numpy", version = "1.26.4", source = { registry = "https://pypi.org/simple" }, marker = "sys_platform != 'win32'" },
     { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11' and sys_platform == 'win32'" },
     { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11' and sys_platform == 'win32'" },
-    { name = "pntos-api" },
+    { name = "pntos-cobra-api" },
     { name = "pntos-cobra-frontend" },
     { name = "pydantic" },
     { name = "scipy", version = "1.15.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
@@ -1665,7 +1650,7 @@ requires-dist = [
     { name = "navtk", specifier = "==2.1.post8.dev0" },
     { name = "numpy", marker = "sys_platform != 'win32'" },
     { name = "numpy", marker = "sys_platform == 'win32'", specifier = ">2.2,<2.5" },
-    { name = "pntos-api", specifier = ">=2.0.0,<3.0.0" },
+    { name = "pntos-cobra-api", editable = "pntos-cobra-api" },
     { name = "pntos-cobra-frontend", specifier = ">=0.1,<0.2" },
     { name = "pydantic", specifier = ">=2.0.0" },
     { name = "scipy", specifier = ">=1.15.2" },
@@ -1698,15 +1683,15 @@ name = "pntos-cobra-apps"
 version = "0.1.0"
 source = { editable = "pntos-cobra-apps" }
 dependencies = [
-    { name = "pntos-api" },
     { name = "pntos-cobra" },
+    { name = "pntos-cobra-api" },
     { name = "pntos-python-datasets-lcm" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "pntos-api", specifier = ">=2.0.0,<3.0.0" },
     { name = "pntos-cobra", editable = "pntos-cobra" },
+    { name = "pntos-cobra-api", editable = "pntos-cobra-api" },
     { name = "pntos-python-datasets-lcm", specifier = ">=0.1.0" },
 ]
 

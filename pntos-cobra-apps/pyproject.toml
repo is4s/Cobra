@@ -20,8 +20,8 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
-    "pntos-api>=2.0.0,<3.0.0",
     "pntos-cobra==2.1.0.post0.dev4",
+    "pntos-cobra-api>=2.0.0,<3.0.0",
     "pntos-python-datasets-lcm>=0.1.0",
 ]
 scripts.cobra_advanced_buscat_app = "pntos.apps.advanced.buscat:main"

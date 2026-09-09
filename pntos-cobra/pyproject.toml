@@ -32,7 +32,7 @@ dependencies = [
     "navtk==2.1.post8.dev0",
     "numpy; sys_platform!='win32'",
     "numpy>2.2,<2.5; sys_platform=='win32'",
-    "pntos-api>=2.0.0,<3.0.0",
+    "pntos-cobra-api>=2.0.0,<3.0.0",
     "pntos-cobra-frontend>=0.1,<0.2",
     "pydantic>=2.0.0",
     "scipy>=1.15.2",

@@ -5,7 +5,10 @@
     #   cobra
     #   pntos-cobra-apps
 -e ./pntos-cobra-api
-    # via cobra
+    # via
+    #   cobra
+    #   pntos-cobra
+    #   pntos-cobra-apps
 -e ./pntos-cobra-apps
     # via cobra
 annotated-types==0.7.0
@@ -13,7 +16,6 @@ annotated-types==0.7.0
 aspn23==0.1.0
     # via
     #   navanalysis-lcm
-    #   pntos-api
     #   pntos-cobra
     #   pntos-cobra-api
 aspn23-lcm==0.1.0
@@ -113,7 +115,6 @@ numpy==1.26.4 ; sys_platform != 'win32'
     #   matplotlib
     #   navanalysis-lcm
     #   navtk
-    #   pntos-api
     #   pntos-cobra
     #   pntos-cobra-api
     #   scipy
@@ -127,7 +128,6 @@ numpy==2.2.6 ; python_full_version < '3.11' and sys_platform == 'win32'
     #   matplotlib
     #   navanalysis-lcm
     #   navtk
-    #   pntos-api
     #   pntos-cobra
     #   pntos-cobra-api
     #   scipy
@@ -141,7 +141,6 @@ numpy==2.4.6 ; python_full_version >= '3.11' and sys_platform == 'win32'
     #   matplotlib
     #   navanalysis-lcm
     #   navtk
-    #   pntos-api
     #   pntos-cobra
     #   pntos-cobra-api
     #   scipy
@@ -151,10 +150,6 @@ pillow==11.3.0
     # via matplotlib
 platformdirs==4.11.2
     # via textual
-pntos-api==2.1.0.post0.dev2
-    # via
-    #   pntos-cobra
-    #   pntos-cobra-apps
 pntos-cobra-frontend==0.1.0
     # via pntos-cobra
 pntos-python-datasets-lcm==0.1.0
@@ -215,7 +210,6 @@ tqdm==4.67.1
 typing-extensions==4.14.1
     # via
     #   cobra
-    #   pntos-api
     #   pntos-cobra
     #   pntos-cobra-api
     #   pydantic
