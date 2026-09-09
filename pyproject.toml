@@ -22,7 +22,6 @@ dependencies = [
     "pntos-api",
     "pntos-cobra",
     "pntos-cobra-apps",
-    "pntos-extras",
     "pntos-python-datasets-lcm==0.1.0",
     "pntos-python-datasets-ros==0.1.0",
     "typing-extensions>=4.14.1",
@@ -52,9 +51,8 @@ dev = [
 sources.pntos-api = { workspace = true }
 sources.pntos-cobra = { workspace = true }
 sources.pntos-cobra-apps = { workspace = true }
-sources.pntos-extras = { workspace = true }
 package = false
-workspace.members = [ "pntos-api", "pntos-cobra", "pntos-cobra-apps", "pntos-extras" ]
+workspace.members = [ "pntos-api", "pntos-cobra", "pntos-cobra-apps" ]
 
 [tool.ruff]
 format.quote-style = "single"
@@ -122,7 +120,6 @@ lint.per-file-ignores."internal.py" = [ "PLC0414" ]
 lint.per-file-ignores."pntos-api/*" = [ "PIE" ]
 lint.per-file-ignores."pntos-cobra-apps/*" = [ "D" ]
 lint.per-file-ignores."pntos-cobra/*" = [ "D" ]
-lint.per-file-ignores."pntos-extras/*" = [ "D" ]
 lint.per-file-ignores."postprocessing/*" = [ "D" ]
 lint.per-file-ignores."util/*" = [ "D", "F" ]
 lint.isort.combine-as-imports = true

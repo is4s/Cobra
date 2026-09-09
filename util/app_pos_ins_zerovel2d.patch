@@ -1,5 +1,5 @@
 diff --git a/pntos-cobra-apps/src/pntos/apps/standard/pos_ins_bodyvel.py b/pntos-cobra-apps/src/pntos/apps/extras/pos_ins_zerovel2d.py
-index 4c6b31e64..3f3639667 100755
+index 4c6b31e64..7c83feca3 100755
 --- a/pntos-cobra-apps/src/pntos/apps/standard/pos_ins_bodyvel.py
 +++ b/pntos-cobra-apps/src/pntos/apps/extras/pos_ins_zerovel2d.py
 @@ -1,5 +1,13 @@
@@ -28,8 +28,8 @@ index 4c6b31e64..3f3639667 100755
      TimeAdjusterConfig,
      TimeBiasConfig,
  )
-+from pntos.extras import AdvancedPreprocessorPlugin
-+from pntos.extras.config import ZeroVelocity2dGeneratorConfig
++from pntos.cobra.extras import AdvancedPreprocessorPlugin
++from pntos.cobra.extras.config import ZeroVelocity2dGeneratorConfig
  from pntos_python_datasets_lcm import EXAMPLE_LCM_LOG
  
  

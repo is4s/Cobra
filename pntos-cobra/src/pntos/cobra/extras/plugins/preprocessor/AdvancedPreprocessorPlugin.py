@@ -5,7 +5,7 @@ from pntos.api import (
     PreprocessorPlugin,
 )
 from pntos.cobra.config import config_from_registry
-from pntos.extras.config import ZeroVelocity2dGeneratorConfig
+from pntos.cobra.extras.config import ZeroVelocity2dGeneratorConfig
 from typing_extensions import override
 
 from .ZeroVelocity2dGenerator import ZeroVelocity2dGenerator

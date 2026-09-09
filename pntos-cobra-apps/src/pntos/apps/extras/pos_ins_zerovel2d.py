@@ -52,8 +52,8 @@ from pntos.cobra.config import (
     TimeAdjusterConfig,
     TimeBiasConfig,
 )
-from pntos.extras import AdvancedPreprocessorPlugin
-from pntos.extras.config import ZeroVelocity2dGeneratorConfig
+from pntos.cobra.extras import AdvancedPreprocessorPlugin
+from pntos.cobra.extras.config import ZeroVelocity2dGeneratorConfig
 from pntos_python_datasets_lcm import EXAMPLE_LCM_LOG
 
 

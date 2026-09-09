@@ -11,10 +11,10 @@ from aspn23 import (
 from pntos.api import Message, RegistryPlugin
 from pntos.cobra import StandardRegistryPlugin
 from pntos.cobra.config import BaseConfig
+from pntos.cobra.extras import AdvancedPreprocessorPlugin
+from pntos.cobra.extras.config import ZeroVelocity2dGeneratorConfig
+from pntos.cobra.extras.internal import ZeroVelocity2dGenerator
 from pntos.cobra.internal import StandardMediator
-from pntos.extras import AdvancedPreprocessorPlugin
-from pntos.extras.config import ZeroVelocity2dGeneratorConfig
-from pntos.extras.internal import ZeroVelocity2dGenerator
 
 ########## Config setup ###############
 LATERAL_VEL_SIGMA = 0.5

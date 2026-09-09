@@ -4,9 +4,10 @@ Cobra Generated Documentation
 This is automatically generated documentation for the ``pntos.cobra`` module.
 
 This consists of the top-level plugin exports (see {ref}`cobra-plugins-doc`), along with
-three sub-namespaces:
+four sub-namespaces:
 - ``pntos.cobra.config`` (See {ref}`cobra-config`)
 - ``pntos.cobra.utils`` (See {ref}`cobra-utils`)
+- ``pntos.cobra.extras`` (See {ref}`cobra-extras`)
 - ``pntos.cobra.internal`` (see {ref}`cobra-internal`)
 
 ```{note}
@@ -28,6 +29,11 @@ autodocs/cobra_config
 ```{toctree}
 :hidden:
 autodocs/cobra_utils
+```
+
+```{toctree}
+:hidden:
+autodocs/cobra_extras
 ```
 
 ```{toctree}

@@ -102,7 +102,7 @@ jobs:
           uses: ./.github/actions/setup
 
         - name: Run tests
-          run: docker exec cobra pytest pntos-cobra pntos-extras --cov
+          run: docker exec cobra pytest pntos-cobra --cov
 
         - name: Save coverage report
           uses: actions/upload-artifact@v4
@@ -122,7 +122,7 @@ jobs:
             python: 3.14
 
         - name: Run tests
-          run: docker exec cobra pytest pntos-cobra pntos-extras --cov
+          run: docker exec cobra pytest pntos-cobra --cov
 
     Windows-Test:
         name: Windows Test
@@ -135,7 +135,7 @@ jobs:
             python -m venv .venv
             .venv\Scripts\Activate.ps1
             python -m pip install -v -r requirements.txt
-            python -m pytest pntos-cobra pntos-extras --cov
+            python -m pytest pntos-cobra --cov
 
     Windows-Run-App:
         name: Windows Run App
@@ -168,7 +168,7 @@ jobs:
           run: |
             docker exec cobra ty check
             docker exec cobra ruff check
-            docker exec cobra pytest pntos-cobra pntos-extras
+            docker exec cobra pytest pntos-cobra
 
     ROS-Test:
         name: ROS Transport Tests

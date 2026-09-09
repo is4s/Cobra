@@ -5,15 +5,11 @@
     #   cobra
     #   pntos-cobra
     #   pntos-cobra-apps
-    #   pntos-extras
 -e ./pntos-cobra
     # via
     #   cobra
     #   pntos-cobra-apps
-    #   pntos-extras
 -e ./pntos-cobra-apps
-    # via cobra
--e ./pntos-extras
     # via cobra
 annotated-types==0.7.0
     # via pydantic
@@ -22,7 +18,6 @@ aspn23==0.1.0
     #   navanalysis-lcm
     #   pntos-api
     #   pntos-cobra
-    #   pntos-extras
 aspn23-lcm==0.1.0
     # via
     #   navanalysis-lcm
@@ -110,7 +105,6 @@ navtk==2.1.0.post8.dev0
     # via
     #   navanalysis-lcm
     #   pntos-cobra
-    #   pntos-extras
 numpy==1.26.4 ; sys_platform != 'win32'
     # via
     #   aspn23
@@ -123,7 +117,6 @@ numpy==1.26.4 ; sys_platform != 'win32'
     #   navtk
     #   pntos-api
     #   pntos-cobra
-    #   pntos-extras
     #   scipy
 numpy==2.2.6 ; python_full_version < '3.11' and sys_platform == 'win32'
     # via
@@ -137,7 +130,6 @@ numpy==2.2.6 ; python_full_version < '3.11' and sys_platform == 'win32'
     #   navtk
     #   pntos-api
     #   pntos-cobra
-    #   pntos-extras
     #   scipy
 numpy==2.4.6 ; python_full_version >= '3.11' and sys_platform == 'win32'
     # via
@@ -151,7 +143,6 @@ numpy==2.4.6 ; python_full_version >= '3.11' and sys_platform == 'win32'
     #   navtk
     #   pntos-api
     #   pntos-cobra
-    #   pntos-extras
     #   scipy
 packaging==25.0
     # via matplotlib
