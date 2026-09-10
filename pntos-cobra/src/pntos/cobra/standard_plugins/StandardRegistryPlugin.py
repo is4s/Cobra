@@ -161,8 +161,7 @@ class StandardKeyValueStore(KeyValueStore):
                 DEFAULT_PERMANENCY_DIR.as_posix() + f'/{self._group}.pkl'
             )
         self._permanency_dir = self._permanency_file.parent
-        if not self._permanency_dir.exists():
-            self._permanency_dir.mkdir(parents=True)
+        self._permanency_dir.mkdir(parents=True, exist_ok=True)
         if self._permanency_file.exists():
             with self._permanency_file.open('rb') as file:
                 self._store = pickle.load(file)
