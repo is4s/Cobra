@@ -13,13 +13,14 @@ Cobra has experimental support on Windows. If you choose to attempt to use Cobra
 natively, it is recommended you do so in a PowerShell shell.
 :::
 
-## Environment Setup
-
-Setting up your environment is done in three steps: installing native dependencies, cloning the {term}`Cobra` project, and setting up your Python environment.
-
 ### Install Native Dependencies
 
-Please ensure you have the following packages installed and available on your system:
+::::{tab-set}
+
+:::{tab-item} Unix-Based Operating Systems
+
+Please ensure you have the following packages installed and available on your system, depending on
+which functionality you want to take advantage of.
 
 | Package              | Reason Needed                              |
 | -------------------- | ------------------------------------------ |
@@ -37,6 +38,23 @@ sudo apt update && sudo apt install python3 python3-venv git libglib2.0-dev defa
 
 Users of other operating systems will need to install the above packages using
 their operating system's package manager.
+:::
+
+:::{tab-item} Windows
+
+Please ensure you have the following packages installed and available
+on your system, depending on which functionality you want to take advantage of.
+
+| Package              | Reason Needed                              |
+| -------------------- | ------------------------------------------ |
+| Python 3.10 or later | Needed to run Cobra                        |
+| Git                  | Needed if cloning Cobra.                   |
+| Java                 | Needed for LCM tools, to run certain apps  |
+
+:::
+
+::::
+
 
 ### Cloning Cobra
 
