@@ -47,6 +47,12 @@ you clone the [`Cobra Git repository`](https://github.com/is4s/cobra) using:
 git clone https://github.com/is4s/Cobra.git
 ```
 
+Then change your current working directory to the Cobra project directory with:
+
+```shell
+cd cobra
+```
+
 Finally, you are now ready to set up your Python environment in the next section.
 
 ### Python Environment Setup
