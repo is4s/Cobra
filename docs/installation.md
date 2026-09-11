@@ -101,15 +101,40 @@ Next, enter the virtual environment. The steps to do this vary depending on your
 <br>
 Your shell should now be inside the virtual environment. It is recommended that you upgrade your pip to the latest:
 
+
+::::{tab-set}
+
+:::{tab-item} Unix-Based Operating Systems
 ```shell
 pip install --upgrade pip
 ```
+:::
+
+:::{tab-item} Windows
+```shell
+.venv\Scripts\python.exe -m pip install --upgrade pip
+```
+:::
+
+::::
 
 Now we're ready to install {term}`Cobra`. From the Cobra root directory, run:
 
+::::{tab-set}
+
+:::{tab-item} Unix-Based Operating Systems
 ```shell
 pip install -v -r requirements.txt
 ```
+:::
+
+:::{tab-item} Windows
+```shell
+.venv\Scripts\python.exe -m pip install -v -r requirements.txt --extra-index-url=$WHEELHOUSE_URL
+```
+:::
+
+::::
 
 ```{note}
 This command may take a while to run. It is downloading example data, which may take a lot
