@@ -16,7 +16,7 @@ to the corresponding page in the {ref}`tutorial-apps` section of the docs.
 ## Running an App
 
 A {term}`Cobra` app consists of a Python script containing all plugin imports, config, and code
-needed to start a particular instance of a {term}`Cobra` implementation. 
+needed to start a particular instance of a {term}`Cobra` implementation.
 
 The core {term}`Cobra` plugin set contains a [Transport plugin](./plugins/transport_plugin.md)
 that retrieves {term}`ASPN` messages from an [LCM](https://github.com/lcm-proj/lcm)
@@ -38,7 +38,7 @@ repository](https://github.com/is4s/cobra), follow the instructions in [](./inst
 to [](#select-and-run-an-app).
 
 If you have created the virtual environment but it is not currently activated, run the below command
-from the root directory to enter the virtual environment. The command varies depending on your shell:
+from the Cobra directory to enter the virtual environment. The command varies depending on your shell:
 
 ```{include} snippets/activate_venv.md
 
@@ -62,7 +62,7 @@ For documentation specifically explaining this app, see
 
 ### Run the POS INS Tutorial App
 
-To run this app, run this command from the root workspace directory (with the Python virtual
+To run this app, run this command from the Cobra directory (with the Python virtual
 environment activated):
 
 ```shell
@@ -114,7 +114,7 @@ For documentation specifically explaining this app, see
 
 ### Run the Position and Velocity Update App
 
-To run this app, run this command from the root workspace directory (with the Python virtual
+To run this app, run this command from the Cobra directory (with the Python virtual
 environment activated):
 
 ```shell
@@ -166,7 +166,7 @@ For documentation specifically explaining this app, see
 
 ### Run the POS INS Standard App
 
-To run this app, run this command from the root workspace directory (with the Python virtual
+To run this app, run this command from the Cobra directory (with the Python virtual
 environment activated):
 
 ```shell
@@ -319,7 +319,7 @@ cobra_{app-type}_{app-name}_app
 
 This is the general format of the app command-line entry points, where you would replace `{app-type}` with
 the app's designated type, and replace `{app-name}` with the name of the Python script of the actual app. If
-you are running in the source project directory, you can also run the apps directly using the executable
+you are running in the Cobra directory, you can also run the apps directly using the executable
 Python files, located in `{workspace-root}/pntos-cobra-apps/src/pntos/apps`.
 ````
 `````

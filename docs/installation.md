@@ -63,7 +63,7 @@ Choose your preferred approach below:
 ``````{tab-item} **pip**
 
 We will begin by creating and entering a clean Python virtual environment (venv). We can create the virtual environment in the
-`.venv` folder by running the following command in the project root directory:
+`.venv` folder by running the following command from the Cobra root directory:
 
 ```shell
 python3 -m venv .venv --prompt cobra
@@ -81,7 +81,7 @@ Your shell should now be inside the virtual environment. It is recommended that 
 pip install --upgrade pip
 ```
 
-Now we're ready to install {term}`Cobra`. In the project root directory, run:
+Now we're ready to install {term}`Cobra`. From the Cobra root directory, run:
 
 ```shell
 pip install -v -r requirements.txt
@@ -99,7 +99,7 @@ First, ensure you have uv installed. If you don't have it yet, you can install i
 following the instructions at
 [https://docs.astral.sh/uv/getting-started/installation/](https://docs.astral.sh/uv/getting-started/installation/).
 
-Create a virtual environment using uv in the project root directory and import
+Create a virtual environment using uv from the Cobra root directory and import
 python dependencies in one step:
 
 ```shell
