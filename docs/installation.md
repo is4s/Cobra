@@ -13,7 +13,7 @@ Cobra has experimental support on Windows. If you choose to attempt to use Cobra
 natively, it is recommended you do so in a PowerShell shell.
 :::
 
-### Install Native Dependencies
+## Install Native Dependencies
 
 ::::{tab-set}
 
@@ -56,7 +56,7 @@ on your system, depending on which functionality you want to take advantage of.
 ::::
 
 
-### Cloning Cobra
+## Cloning Cobra
 
 Next, download the {term}`Cobra` project onto your machine. While there are several approaches to do so, we suggest
 you clone the [`Cobra Git repository`](https://github.com/is4s/cobra) using:
@@ -73,7 +73,7 @@ cd cobra
 
 Finally, you are now ready to set up your Python environment in the next section.
 
-### Python Environment Setup
+## Python Environment Setup
 
 This project supports two workflows:
 
