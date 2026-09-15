@@ -21,7 +21,7 @@ implementations in more depth.
 ## State Modeling API
 ### StateModelingPlugin
 As mentioned above, the {py:obj}`~pntos.api.StateModelingPlugin` itself is essentially a generator
-of StateModelProviders. It, like many of the elements described in this document, use the
+of StateModelProviders. It, like many of the elements described in this document, uses the
 [factory pattern](../factory_pattern.md). In addition to everything inherited from {py:obj}`~pntos.api.CommonPlugin`,
 there are two additional functions: one that generates a new StateModelProvider of a specified type...
 
