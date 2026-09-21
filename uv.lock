@@ -278,7 +278,7 @@ dev = [
     { name = "libclang", specifier = ">=18.1.1" },
     { name = "myst-parser", specifier = ">=4" },
     { name = "pip", specifier = ">=24" },
-    { name = "pntos-cobra-docs-data" },
+    { name = "pntos-cobra-docs-data", specifier = "==1.1.0" },
     { name = "pyproject-fmt", specifier = "==2.25.3" },
     { name = "pytest", specifier = ">=8.2" },
     { name = "pytest-cov", specifier = ">=6" },
@@ -1697,10 +1697,10 @@ requires-dist = [
 
 [[package]]
 name = "pntos-cobra-docs-data"
-version = "1.0.0"
+version = "1.1.0"
 source = { registry = "https://pypi.org/simple" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/6b/16/020f216bc95f214c8bd95df83e2700de1ea0adf7e7dd574c53f8b09f7a8f/pntos_cobra_docs_data-1.0.0-py2.py3-none-any.whl", hash = "sha256:2ff6429ac5b052e81955fde4aea3336123a4f035ccfaafc82c803246b41748e8", size = 5466381, upload-time = "2026-07-21T13:45:57.967Z" },
+    { url = "https://files.pythonhosted.org/packages/6d/d6/23d823685c2da8999fa5813e50cc58481dadb17dc8a9b458e50d1a38b772/pntos_cobra_docs_data-1.1.0-py2.py3-none-any.whl", hash = "sha256:bc6a6d575352b7d632326b6ff4af2ea7236a25c2c1d0f2314ed6695c453869dd", size = 5919860, upload-time = "2026-08-12T20:13:53.257Z" },
 ]
 
 [[package]]

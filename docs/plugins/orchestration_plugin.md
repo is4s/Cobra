@@ -1,9 +1,19 @@
 # Orchestration Plugin
 
-The {py:obj}`Orchestration Plugin<pntos.api.OrchestrationPlugin>` can be viewed as the core of the
+The {py:obj}`Orchestration plugin<pntos.api.OrchestrationPlugin>` can be viewed as the core of the
 pntOS filter. It is responsible for ingesting sensor data and using it to calculate a solution.
-The plugin was designed to be generic enough to allow a full, navigation solution to be developed
-within it or to utilize a bank of filtering plugins such as the following:
+The plugin was designed to be generic enough to allow a full navigation solution to be developed
+within it, or to utilize a bank of filtering plugins. Based on this configuration decision, an
+implementation of pntOS falls into one of two categories, or "levels". In a 
+{term}`level 1 implementation <Level 1 Implementation>`, the filter solution is determined within
+the {py:obj}`Orchestration plugin<pntos.api.OrchestrationPlugin>` with no delegation to other
+plugins. An example of what this type of implementation might look like can be seen below.
+
+![Level 1 Image](../images/level_1_implementation.png)
+
+On the other hand, in {term}`level 2 pntOS implementations <Level 2 Implementation>`, the 
+{py:obj}`Orchestration plugin<pntos.api.OrchestrationPlugin>` delegates all relevant tasks to other
+filtering plugins, such as the following:
 
 * [](./fusion_plugin.md)
 * [](./fusion_strategy_plugin.md)
@@ -12,13 +22,21 @@ within it or to utilize a bank of filtering plugins such as the following:
 * [](./state_modeling_plugin.md)
 * [](./preprocessor_plugin.md)
 
-In the latter case, the orchestration plugin is responsible for configuring and managing these
-plugins to achieve its primary goal - producing a solution. Whether the plugin is implemented to be
-a black box solution or a modular approach, any given orchestration plugin should expect a
+In this case, the orchestration plugin is responsible for configuring and managing these plugins to
+achieve its primary goal - producing a solution. This type of hierarchy can be seen in Cobra; its
+implementations of the Orchestration plugin support a 
+{term}`level 2 pntOS implementation <Level 2 Implementation>`.
+An example of the {term}`level 2 <Level 2 Implementation>` structure can be seen below.
+
+![Level 2 Image](../images/level_2_implementation.png)
+
+Whether the plugin is implemented to be a black box solution
+({term}`level 1 <Level 1 Implementation>`) or a modular approach
+({term}`level 2 <Level 2 Implementation>`), any given orchestration plugin should expect a
 {py:obj}`MessageStreamConfig<pntos.api.MessageStreamConfig>`. This class gives the Orchestration
-Plugin control over which messages are buffered (delayed and sequenced) and which are not (immediate).
-The control over delivery is vital for certain navigation algorithms, so it was built-in as a
-requirement in the API for every orchestration plugin.
+plugin control over which messages are buffered (delayed and sequenced) and which are not 
+(immediate). The control over delivery is vital for certain navigation algorithms, so it was
+built-in as a requirement in the API for every orchestration plugin.
 
 ## Orchestration Plugin API
 

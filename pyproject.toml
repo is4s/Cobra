@@ -34,7 +34,7 @@ dev = [
     "libclang>=18.1.1",
     "myst-parser>=4",
     "pip>=24",
-    "pntos-cobra-docs-data",
+    "pntos-cobra-docs-data==1.1.0",
     "pyproject-fmt==2.25.3",
     "pytest>=8.2",
     "pytest-cov>=6",

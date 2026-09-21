@@ -244,7 +244,7 @@ In {term}`Cobra`, plugins do not ever directly communicate with each other. Inst
 {py:obj}`Mediator<pntos.api.Mediator>` as a parameter. Each plugin is then required to save off the
 {py:obj}`Mediator<pntos.api.Mediator>` it was passed, and use it for all communications with other plugins going
 forward. Understanding how the {py:obj}`Mediator<pntos.api.Mediator>` works is vital to understanding the {term}`Cobra`
-architecture, as all data that pass from one plugin to another flows through it.
+architecture, as all data that passes from one plugin to another flows through it.
 
 ```{note}
 One way to think of the Mediator is that it is a "communications object". Every plugin is handed a communications

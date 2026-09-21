@@ -38,7 +38,7 @@ Other plugins such as the [UI Plugin](./plugins/ui_plugin.md),
 Plugin](./plugins/utility_plugin.md) optionally provide the system with expanded
 capabilities.
 
-See the below pages for descriptions of various plugins, as well as any related components:
+See the pages below for descriptions of various plugins, as well as any related components:
 
 ```{toctree}
 plugins/controller_plugin

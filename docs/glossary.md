@@ -61,6 +61,12 @@ IMU
 INS
     Inertial Navigation System
 
+Level 1 Implementation
+    An implementation of pntOS in which the filter is implemented entirely within the [Orchestration Plugin](./plugins/orchestration_plugin.md) with no delegation to other plugins.
+
+Level 2 Implementation
+    An implementation of pntOS in which the [Orchestration Plugin](./plugins/orchestration_plugin.md) delegates all relevant tasks to additional filtering plugins.
+
 PNT
     Positioning, Navigation, and Timing
 
