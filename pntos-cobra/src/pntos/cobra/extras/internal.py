@@ -1,3 +1,6 @@
+from .plugins.preprocessor.PreprocessorManager import (
+    PreprocessorManager as PreprocessorManager,
+)
 from .plugins.preprocessor.ZeroVelocity2dGenerator import (
     ZeroVelocity2dGenerator as ZeroVelocity2dGenerator,
 )

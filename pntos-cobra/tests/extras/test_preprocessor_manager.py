@@ -16,10 +16,8 @@ from pntos.cobra.config import (
     BaseConfig,
     PreprocessorConfig,
 )
-from pntos.cobra.internal import (
-    PreprocessorManager,
-    StandardMediator,
-)
+from pntos.cobra.extras.internal import PreprocessorManager
+from pntos.cobra.internal import StandardMediator
 from typing_extensions import override
 
 MediatorFactoryType: TypeAlias = Callable[
