@@ -20,6 +20,8 @@ from pntos.api import (
     Message,
     MessageStreamConfig,
     OrchestrationPlugin,
+    Preprocessor,
+    PreprocessorPlugin,
     StandardFusionEngine,
     StandardFusionStrategy,
     StandardInertialMechanization,
@@ -31,13 +33,13 @@ from pntos.cobra.config import (
     FeedbackConfig,
     MeasurementProcessorConfig,
     PinsonStateBlockConfig,
+    PreprocessorConfig,
     StandardOrchestrationConfig,
     StateBlockConfig,
     StreamConfig,
     VirtualStateBlockConfig,
 )
 from pntos.cobra.config.utils import config_from_registry
-from pntos.cobra.internal import PreprocessorManager
 from pntos.cobra.utils import (
     ASPN_MESSAGE_TYPE_MAP,
     Cache,
@@ -71,7 +73,8 @@ class StandardOrchestrationPlugin(OrchestrationPlugin):
     fusion_strategy_plugin: FusionStrategyPlugin
     inertial_plugin: InertialPlugin
     state_modeling_plugins: list[StateModelingPlugin]
-    preprocessor_manager: PreprocessorManager | None
+    # List of preprocessors paired with list of channels to pass to each preprocessor
+    preprocessors: list[tuple[Preprocessor, tuple[str, ...] | None]]
     initialization_plugin: InitializationPlugin
     initialization_state: InitializationStatus
     initializer: InertialInitializationStrategy
@@ -95,7 +98,7 @@ class StandardOrchestrationPlugin(OrchestrationPlugin):
         self.identifier: str = identifier
         self.initialization_state = InitializationStatus.WAITING
         self.init_solution = None
-        self.preprocessor_manager = None
+        self.preprocessors = []
         self.measurement_channels = {}
         self.inertial_drift_prop_dt = int(0.1 * 1e9)
         self.cache = Cache()
@@ -208,13 +211,10 @@ class StandardOrchestrationPlugin(OrchestrationPlugin):
         self.initialization_plugin = sorted_plugins.initialization_plugins[0]
         self.state_modeling_plugins = sorted_plugins.state_modeling_plugins
 
-        # Set up preprocessor manager if defined, otherwise ignore preprocessing workflow
+        # Set up preprocessors if defined, otherwise ignore preprocessing workflow
         if orch_config.preprocessor_configs is not None:
-            self.preprocessor_manager = PreprocessorManager(
-                sorted_plugins.preprocessor_plugins,
-                orch_config.preprocessor_configs,
-                self.mediator,
-            )
+            for config in orch_config.preprocessor_configs:
+                self._add_preprocessor(sorted_plugins.preprocessor_plugins, config)
         self._set_up_fusion_engine(
             orch_config.additional_sb_configs,
             orch_config.mp_configs,
@@ -479,6 +479,34 @@ class StandardOrchestrationPlugin(OrchestrationPlugin):
 
             self.vsbs_needing_pva[mp_config.label] = needs_pva
             self.vsbs_needing_f_and_r[mp_config.label] = needs_fnr
+
+    def _add_preprocessor(
+        self,
+        preprocessor_plugins: list[PreprocessorPlugin],
+        config: PreprocessorConfig,
+    ) -> None:
+        """
+        Utility function to add a preprocessor to the chain of preprocessors.
+        """
+        if config.regex:
+            self._log(
+                LoggingLevel.ERROR,
+                f'Regex of "{config.channels}" not supported for "PreprocessorConfig.channels" in StandardOrchestrationPlugin.',
+            )
+            return
+
+        for plugin in preprocessor_plugins:
+            if config.identifier not in plugin.preprocessor_identifiers:
+                continue
+            idx = plugin.preprocessor_identifiers.index(config.identifier)
+            preprocessor = plugin.new_preprocessor(idx, config.group)
+            if preprocessor is None:
+                self._log(
+                    LoggingLevel.ERROR,
+                    f'Unable to create preprocessor with identifier "{config.identifier}" from config group "{config.group}".',
+                )
+                return
+            self.preprocessors.append((preprocessor, config.channels))
 
     def _set_up_fusion_engine(
         self,
@@ -809,12 +837,43 @@ class StandardOrchestrationPlugin(OrchestrationPlugin):
             for label in vsb_labels:
                 self.fusion_engine.give_virtual_state_block_aux_data(label, [message])
 
+    def _preprocess_message(self, message: Message) -> list[Message] | None:
+        """
+        Given a message, preprocess it by feeding it through the chain of preprocessors that need it.
+
+        Args:
+            message (Message): The message to preprocess
+
+        Returns:
+            list[Message] | None: The output messages, or None if one of the preprocessors dropped
+            the input message.
+        """
+        out_list = [message]
+
+        for preprocessor, desired_channels in self.preprocessors:
+            if len(out_list) == 0:
+                return None
+            tmp_list = out_list.copy()
+            out_list = []
+            for out_message in tmp_list:
+                channel = out_message.source_identifier
+                # Feed message through preprocesor if needed, otherwise bypass it
+                if desired_channels is None or channel in desired_channels:
+                    new_messages = preprocessor.process_pntos_message(out_message)
+                else:
+                    new_messages = [out_message]
+
+                if new_messages is not None:
+                    out_list.extend(new_messages)
+
+        if len(out_list) > 0:
+            return out_list
+        return None
+
     @override
     def process_pntos_message(self, message: Message, sequenced: bool) -> None:
-        if self.preprocessor_manager is not None:
-            preprocessed_messages = self.preprocessor_manager.preprocess_message(
-                message
-            )
+        if self.preprocessors:
+            preprocessed_messages = self._preprocess_message(message)
         else:
             preprocessed_messages = [message]
         if preprocessed_messages is None:
