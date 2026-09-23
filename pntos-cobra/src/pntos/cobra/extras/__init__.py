@@ -4,3 +4,6 @@ from .plugins.LcmLogTransportPluginWithProfiling import (
 from .plugins.preprocessor.AdvancedPreprocessorPlugin import (
     AdvancedPreprocessorPlugin as AdvancedPreprocessorPlugin,
 )
+from .plugins.simple_dynamic_initialization_plugin import (
+    SimpleDynamicInitializationPlugin as SimpleDynamicInitializationPlugin,
+)
