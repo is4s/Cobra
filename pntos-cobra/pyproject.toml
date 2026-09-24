@@ -25,7 +25,7 @@ dependencies = [
     "flask",
     "flask-socketio",
     "h5py>1",
-    "lcm>=1.5.1,<2",
+    "lcm>=1.5.3,<2",
     "matplotlib",
     "navanalysis-lcm==0.1.5",
     "navanalysis-ros==0.1.2",

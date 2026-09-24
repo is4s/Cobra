@@ -222,7 +222,7 @@ def estimate_arm(
     proc_every = 100
     num = 0
     last_pva: MeasurementPositionVelocityAttitude | None = None
-    for e in log:  # ty:ignore[not-iterable]
+    for e in log:
         if chan == e.channel:
             num += 1
             if num >= proc_every:
