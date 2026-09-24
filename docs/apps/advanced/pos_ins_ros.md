@@ -25,8 +25,9 @@ To use ROS, Cobra needs access to built ASPN-ROS packages generated in
 Firehose. If running on Ubuntu 22.04 or Ubuntu 24.04 (which is likely if you
 want to use ROS, since running ROS on other platforms is difficult!) with x86,
 it may be easiest to use the ROS Ubuntu x86 development packages automatically
-built in the Firehose CI. To do this, simply clone `firehose-outputs` and
-source `firehose-outputs/ros_devel/<distro>/setup.<shell>`.
+built in the Firehose CI. To do this, simply clone `aspn-generated` (found
+[here](https://github.com/is4s/aspn-generated)) and source
+`aspn-generated/ros_devel/<distro>/setup.<shell>`.
 
 Otherwise, you'll need to build ASPN-ROS for your platform. If you're running
 ROS in a Docker container, you may want to copy the result into it so you can
