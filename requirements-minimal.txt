@@ -92,7 +92,7 @@ mdit-py-plugins==0.4.2
     # via textual
 mdurl==0.1.2
     # via markdown-it-py
-navanalysis-lcm==0.1.5
+navanalysis-lcm==0.1.7
     # via
     #   cobra
     #   navanalysis-ros
@@ -178,7 +178,12 @@ pyyaml==6.0.3
     # via navanalysis-lcm
 rich==15.0.0
     # via textual
-scipy==1.15.3 ; python_full_version < '3.11'
+scipy==1.14.1 ; python_full_version < '3.11' and sys_platform == 'darwin'
+    # via
+    #   inu
+    #   navanalysis-lcm
+    #   pntos-cobra
+scipy==1.15.3 ; python_full_version < '3.11' and sys_platform != 'darwin'
     # via
     #   inu
     #   navanalysis-lcm
